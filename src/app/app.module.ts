@@ -19,6 +19,8 @@ import { BlogDetailsComponent } from './features/public/blog-details/blog-detail
 import { LoginComponent } from './features/auth/login/login.component';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { RegisterComponent } from './features/auth/register/register.component';
+import { LocationListComponent } from './features/location/location-list/location-list.component';
+import { RestaurantListComponent } from './features/location/restaurant-list/restaurant-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { RegisterComponent } from './features/auth/register/register.component';
     HomeComponent,
     BlogDetailsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LocationListComponent,
+    RestaurantListComponent
   ],
   imports: [
     BrowserModule,

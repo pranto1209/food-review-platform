@@ -11,11 +11,17 @@ import { BlogDetailsComponent } from './features/public/blog-details/blog-detail
 import { LoginComponent } from './features/auth/login/login.component';
 import { authGuard } from './features/auth/guards/auth.guard';
 import { RegisterComponent } from './features/auth/register/register.component';
+import { LocationListComponent } from './features/location/location-list/location-list.component';
+import { RestaurantListComponent } from './features/location/restaurant-list/restaurant-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: LocationListComponent
+  },
+  {
+    path: 'restaurant/:id',
+    component: RestaurantListComponent
   },
   {
     path: 'login',
@@ -30,32 +36,32 @@ const routes: Routes = [
     component: BlogDetailsComponent
   },
   {
-    path: 'categories',
+    path: 'reviews',
     component: CategoryListComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'categories/add',
+    path: 'reviews/add',
     component: AddCategoryComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'categories/:id',
+    path: 'reviews/:id',
     component: EditCategoryComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'blogposts',
+    path: 'check-ins',
     component: BlogpostListComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'blogposts/add',
+    path: 'check-ins/add',
     component: AddBlogpostComponent,
     canActivate: [authGuard]
   },
   {
-    path: 'blogposts/:id',
+    path: 'check-ins/:id',
     component: EditBlogpostComponent,
     canActivate: [authGuard]
   }

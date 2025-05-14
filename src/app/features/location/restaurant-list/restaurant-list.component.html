@@ -1,0 +1,30 @@
+<div class="container">
+
+    <h1 class="mt-3">Restaurant List</h1>
+
+    <ng-container>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Area</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let restaurant of restaurants">
+                    <td>{{restaurant.id}}</td>
+                    <td>{{restaurant.name}}</td>
+                    <td>{{restaurant.area}}</td>
+                    <td>
+                        <a class="btn btn-primary" [routerLink]="['/restaurants', restaurant.id]">View Review</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </ng-container>
+
+</div>

@@ -1,0 +1,28 @@
+<div class="container">
+
+    <h1 class="mt-3">Location List</h1>
+
+    <ng-container *ngIf="locations$ | async as locations">
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Area</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let location of locations">
+                    <td>{{location.id}}</td>
+                    <td>{{location.area}}</td>
+                    <td>
+                        <a class="btn btn-primary" [routerLink]="['/restaurant', location.id]">View Restaurant</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </ng-container>
+
+</div>

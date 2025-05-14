@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RestaurantListComponent {
 
+  locationId: number = 0;
   restaurants: any[] = [];
 
   constructor(
@@ -18,9 +19,9 @@ export class RestaurantListComponent {
   }
 
   ngOnInit(): void {
-    const id = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
+    this.locationId = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
 
-    this.locationService.getRestaurantsByLocation(id)
+    this.locationService.getRestaurantsByLocation(this.locationId)
       .subscribe({
         next: (response) => {
           this.restaurants = response;

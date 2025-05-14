@@ -4,7 +4,7 @@
 
     <div class="d-flex justify-content-between mt-3">
         <div class="d-flex"></div>
-        <a class="btn btn-primary" [routerLink]="['/review/add']"  [queryParams]="{ id: userReview.id }">Add Review</a>
+        <a class="btn btn-primary" [routerLink]="['/review/add']"  [queryParams]="{ id: restaurantId }">Add Review</a>
     </div>
     <ng-container>
         <table class="table table-bordered mt-3">
@@ -16,22 +16,23 @@
                     <th>Rating</th>
                     <th>Comment</th>
                     <th>Review Time</th>
-                    <th>Action</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngIf="!userReview">
-                    <td colspan="6" class="text-center">No record to display</td>
+                    <td colspan="7" class="text-center">No record to display</td>
                 </tr>
-                <tr class="align-middle">
+                <tr *ngIf="userReview" class="align-middle">
                     <td>{{userReview.userName}}</td>
                     <td>{{userReview.restaurantName}}</td>
                     <td>{{userReview.area}}</td>
                     <td>{{userReview.rating}}</td>
                     <td>{{userReview.comment}}</td>
                     <td>{{userReview.reviewTime | date: 'dd/MM/yyyy, hh:mm:ss a'}}</td>
-                    <td>
+                    <td class="text-center">
                         <a class="btn btn-primary" [routerLink]="['/review/edit']" [queryParams]="{ id: userReview.id }">Edit</a>
+                        <button type="button" class="btn btn-danger ms-2" (click)="onDelete()">Delete</button>
                     </td>
                 </tr>
             </tbody>

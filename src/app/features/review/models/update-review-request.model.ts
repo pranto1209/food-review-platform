@@ -1,4 +1,5 @@
 export interface UpdateReviewRequest {
-  name:string;
-  urlHandle: string;
+  id: number;
+  rating: number;
+  comment?: string;
 }

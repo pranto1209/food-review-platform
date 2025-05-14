@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddReviewRequest } from '../models/add-review-request.model';
 import { ReviewService } from '../services/review.service';
-// import { ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-review',
@@ -18,10 +19,10 @@ export class AddReviewComponent implements OnInit {
   };
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private reviewService: ReviewService,
-    ) {
+    private location: Location,
+    private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -29,15 +30,14 @@ export class AddReviewComponent implements OnInit {
   }
 
   onFormSubmit() {
-  this.reviewService.addReview(this.model)
-    .subscribe({
-      next: (response) => {
-        // this.toastr.success('Review added successfully!');
-        this.router.navigateByUrl('/review');
-      },
-      error: (err) => {
-        // this.toastr.error('Failed to add review. Please try again.');
-      }
-    });
-}
+    this.reviewService.addReview(this.model)
+      .subscribe({
+        next: (response) => {
+          this.location.back();
+        },
+        error: (err) => {
+          this.toastr.error('You have already reviewed this location');
+        }
+      });
+  }
 }

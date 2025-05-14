@@ -9,7 +9,7 @@ import { ReviewService } from '../services/review.service';
 })
 export class ReviewListComponent {
 
-  id: number = 0;
+  restaurantId: number = 0;
   reviews: any[] = [];
   userReview: any = null;
 
@@ -19,20 +19,29 @@ export class ReviewListComponent {
   }
 
   ngOnInit(): void {
-    this.id = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
+    this.restaurantId = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
 
-    this.reviewService.getReviewsByRestaurant(this.id)
+    this.reviewService.getReviewsByRestaurant(this.restaurantId)
       .subscribe({
         next: (response) => {
           this.reviews = response;
         }
       });
 
-    this.reviewService.getUserReviewByRestaurant(this.id)
+    this.reviewService.getUserReviewByRestaurant(this.restaurantId)
       .subscribe({
         next: (response) => {
           this.userReview = response;
         }
       });
+  }
+
+  onDelete(): void {
+    this.reviewService.deleteReview(this.userReview.id)
+      .subscribe({
+        next: (response) => {
+          this.ngOnInit();
+        }
+      })
   }
 }

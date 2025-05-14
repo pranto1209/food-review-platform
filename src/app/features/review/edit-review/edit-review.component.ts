@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
 import { UpdateReviewRequest } from '../models/update-review-request.model';
 import { ReviewService } from '../services/review.service';
 
@@ -11,57 +11,39 @@ import { ReviewService } from '../services/review.service';
 })
 export class EditReviewComponent implements OnInit {
 
-  id: number = 0;
-  paramsSubscription?: Subscription;
-  editCategorySubscription?: Subscription;
-  review?: any;
+  reviewId: number = 0;
+  userReview: any;
 
   constructor(
     private route: ActivatedRoute,
     private reviewService: ReviewService,
+    private location: Location,
     private router: Router) {
   }
 
   ngOnInit(): void {
-    this.id = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
+    this.reviewId = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
 
-    this.reviewService.getReviewById(this.id)
+    this.reviewService.getReviewById(this.reviewId)
       .subscribe({
         next: (response) => {
-          this.review = response;
+          this.userReview = response;
         }
       });
   }
 
   onFormSubmit(): void {
     const updateUserReviewRequest: UpdateReviewRequest = {
-      name: this.review?.name ?? '',
-      urlHandle: this.review?.urlHandle ?? ''
+      id: this.reviewId,
+      rating: this.userReview.rating,
+      comment: this.userReview.comment ?? ''
     };
 
-    if (this.id) {
-      this.editCategorySubscription = this.reviewService.updateReview(this.id, updateUserReviewRequest)
+    this.reviewService.updateReview(updateUserReviewRequest)
       .subscribe({
         next: (response) => {
-          this.router.navigateByUrl('/user-review');
+          this.location.back();
         }
       });
-    }
-  }
-
-  onDelete(): void {
-    if (this.id) {
-      this.reviewService.deleteReview(this.id)
-      .subscribe({
-        next: (response) => {
-          this.router.navigateByUrl('/user-review');
-        }
-      })
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.paramsSubscription?.unsubscribe();
-    this.editCategorySubscription?.unsubscribe();
   }
 }

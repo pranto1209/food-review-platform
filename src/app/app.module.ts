@@ -22,9 +22,8 @@ import { RegisterComponent } from './features/auth/register/register.component';
 import { LocationListComponent } from './features/location/location-list/location-list.component';
 import { RestaurantListComponent } from './features/location/restaurant-list/restaurant-list.component';
 import { ReviewListComponent } from './features/review/review-list/review-list.component';
-import { UserReviewListComponent } from './features/review/user-review-list/user-review-list.component';
-import { AddUserReviewComponent } from './features/review/add-user-review/add-user-review.component';
-import { EditUserReviewComponent } from './features/review/edit-user-review/edit-user-review.component';
+import { AddReviewComponent } from './features/review/add-review/add-review.component';
+import { EditReviewComponent } from './features/review/edit-review/edit-review.component';
 
 @NgModule({
   declarations: [
@@ -44,9 +43,8 @@ import { EditUserReviewComponent } from './features/review/edit-user-review/edit
     LocationListComponent,
     RestaurantListComponent,
     ReviewListComponent,
-    UserReviewListComponent,
-    AddUserReviewComponent,
-    EditUserReviewComponent
+    AddReviewComponent,
+    EditReviewComponent
   ],
   imports: [
     BrowserModule,

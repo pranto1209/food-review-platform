@@ -8,8 +8,10 @@ import { ReviewService } from '../services/review.service';
   styleUrls: ['./review-list.component.css']
 })
 export class ReviewListComponent {
+
   id: number = 0;
   reviews: any[] = [];
+  userReview: any = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,6 +25,13 @@ export class ReviewListComponent {
       .subscribe({
         next: (response) => {
           this.reviews = response;
+        }
+      });
+
+    this.reviewService.getUserReviewByRestaurant(this.id)
+      .subscribe({
+        next: (response) => {
+          this.userReview = response;
         }
       });
   }

@@ -14,9 +14,8 @@ import { RegisterComponent } from './features/auth/register/register.component';
 import { LocationListComponent } from './features/location/location-list/location-list.component';
 import { RestaurantListComponent } from './features/location/restaurant-list/restaurant-list.component';
 import { ReviewListComponent } from './features/review/review-list/review-list.component';
-import { UserReviewListComponent } from './features/review/user-review-list/user-review-list.component';
-import { AddUserReviewComponent } from './features/review/add-user-review/add-user-review.component';
-import { EditUserReviewComponent } from './features/review/edit-user-review/edit-user-review.component';
+import { AddReviewComponent } from './features/review/add-review/add-review.component';
+import { EditReviewComponent } from './features/review/edit-review/edit-review.component';
 
 const routes: Routes = [
   {
@@ -27,6 +26,7 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
+  
   {
     path: '',
     component: LocationListComponent
@@ -40,13 +40,13 @@ const routes: Routes = [
     component: ReviewListComponent
   },
   {
-    path: 'user-review/add',
-    component: AddUserReviewComponent,
+    path: 'review/add',
+    component: AddReviewComponent,
     // canActivate: [authGuard]
   },
   {
-    path: 'user-review/edit',
-    component: EditUserReviewComponent,
+    path: 'review/edit',
+    component: EditReviewComponent,
     // canActivate: [authGuard]
   },
 
@@ -55,12 +55,6 @@ const routes: Routes = [
     path: 'blog/:url',
     component: BlogDetailsComponent
   },
-  {
-    path: 'user-review',
-    component: UserReviewListComponent,
-    // canActivate: [authGuard]
-  },
-  
   {
     path: 'check-in',
     component: BlogpostListComponent,

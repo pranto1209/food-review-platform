@@ -14,23 +14,23 @@ export class ReviewService {
     return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-reviews-by-restaurant?id=${id}`);
   }
 
-  getReviewsByUser(): Observable<any> {
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-reviews-by-user`);
+  getUserReviewByRestaurant(id: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-user-reviews-by-restaurant?id=${id}`);
   }
 
   getReviewById(id: any): Observable<any> {
     return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-review-by-id?id=${id}`);
   }
 
-  addUserReview(model: any): Observable<void> {
-    return this.http.post<void>(`${environment.apiBaseUrl}/api/Review/add-user-review`, model);
+  addReview(model: any): Observable<void> {
+    return this.http.post<void>(`${environment.apiBaseUrl}/api/Review/add-review`, model);
   }
 
-  updateUserReview(id: any, updateCategoryRequest: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiBaseUrl}/api/Review/update-user-review`, updateCategoryRequest);
+  updateReview(id: any, updateCategoryRequest: any): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}/api/Review/update-review`, updateCategoryRequest);
   }
 
-  deleteUserReview(id: any): Observable<any> {
-    return this.http.delete<any>(`${environment.apiBaseUrl}/api/Review/delete-user-review/${id}?addAuth=true`)
+  deleteReview(id: any): Observable<any> {
+    return this.http.delete<any>(`${environment.apiBaseUrl}/api/Review/delete-review/${id}`)
   }
 }

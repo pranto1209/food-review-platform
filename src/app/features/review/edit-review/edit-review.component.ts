@@ -1,15 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UpdateUserReviewRequest } from '../models/update-user-review-request.model';
+import { UpdateReviewRequest } from '../models/update-review-request.model';
 import { ReviewService } from '../services/review.service';
 
 @Component({
-  selector: 'app-edit-user-review',
-  templateUrl: './edit-user-review.component.html',
-  styleUrls: ['./edit-user-review.component.css']
+  selector: 'app-edit-review',
+  templateUrl: './edit-review.component.html',
+  styleUrls: ['./edit-review.component.css']
 })
-export class EditUserReviewComponent implements OnInit, OnDestroy {
+export class EditReviewComponent implements OnInit {
 
   id: number = 0;
   paramsSubscription?: Subscription;
@@ -34,13 +34,13 @@ export class EditUserReviewComponent implements OnInit, OnDestroy {
   }
 
   onFormSubmit(): void {
-    const updateUserReviewRequest: UpdateUserReviewRequest = {
+    const updateUserReviewRequest: UpdateReviewRequest = {
       name: this.review?.name ?? '',
       urlHandle: this.review?.urlHandle ?? ''
     };
 
     if (this.id) {
-      this.editCategorySubscription = this.reviewService.updateUserReview(this.id, updateUserReviewRequest)
+      this.editCategorySubscription = this.reviewService.updateReview(this.id, updateUserReviewRequest)
       .subscribe({
         next: (response) => {
           this.router.navigateByUrl('/user-review');
@@ -51,7 +51,7 @@ export class EditUserReviewComponent implements OnInit, OnDestroy {
 
   onDelete(): void {
     if (this.id) {
-      this.reviewService.deleteUserReview(this.id)
+      this.reviewService.deleteReview(this.id)
       .subscribe({
         next: (response) => {
           this.router.navigateByUrl('/user-review');

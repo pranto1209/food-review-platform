@@ -1,4 +1,4 @@
-export interface AddUserReviewRequest {
+export interface AddReviewRequest {
   rating: number;
   comment?: string;
   restaurantId: number;

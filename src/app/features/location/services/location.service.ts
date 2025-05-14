@@ -15,6 +15,6 @@ export class LocationService {
   }
 
   getRestaurantsByLocation(id: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Location/get-restaurants-by-location/${id}`);
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/Location/get-restaurants-by-location?id=${id}`);
   }
 }

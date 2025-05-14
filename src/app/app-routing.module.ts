@@ -13,16 +13,12 @@ import { authGuard } from './features/auth/guards/auth.guard';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { LocationListComponent } from './features/location/location-list/location-list.component';
 import { RestaurantListComponent } from './features/location/restaurant-list/restaurant-list.component';
+import { ReviewListComponent } from './features/review/review-list/review-list.component';
+import { UserReviewListComponent } from './features/review/user-review-list/user-review-list.component';
+import { AddUserReviewComponent } from './features/review/add-user-review/add-user-review.component';
+import { EditUserReviewComponent } from './features/review/edit-user-review/edit-user-review.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LocationListComponent
-  },
-  {
-    path: 'restaurant/:id',
-    component: RestaurantListComponent
-  },
   {
     path: 'login',
     component: LoginComponent
@@ -32,38 +28,53 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path: '',
+    component: LocationListComponent
+  },
+  {
+    path: 'restaurant',
+    component: RestaurantListComponent
+  },
+  {
+    path: 'review',
+    component: ReviewListComponent
+  },
+  {
+    path: 'user-review/add',
+    component: AddUserReviewComponent,
+    // canActivate: [authGuard]
+  },
+  {
+    path: 'user-review/edit',
+    component: EditUserReviewComponent,
+    // canActivate: [authGuard]
+  },
+
+
+  {
     path: 'blog/:url',
     component: BlogDetailsComponent
   },
   {
-    path: 'reviews',
-    component: CategoryListComponent,
-    canActivate: [authGuard]
+    path: 'user-review',
+    component: UserReviewListComponent,
+    // canActivate: [authGuard]
   },
+  
   {
-    path: 'reviews/add',
-    component: AddCategoryComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'reviews/:id',
-    component: EditCategoryComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'check-ins',
+    path: 'check-in',
     component: BlogpostListComponent,
-    canActivate: [authGuard]
+    // canActivate: [authGuard]
   },
   {
-    path: 'check-ins/add',
+    path: 'check-in/add',
     component: AddBlogpostComponent,
-    canActivate: [authGuard]
+    // canActivate: [authGuard]
   },
   {
-    path: 'check-ins/:id',
+    path: 'check-in/:id',
     component: EditBlogpostComponent,
-    canActivate: [authGuard]
+    // canActivate: [authGuard]
   }
 ];
 

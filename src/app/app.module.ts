@@ -21,6 +21,10 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { RegisterComponent } from './features/auth/register/register.component';
 import { LocationListComponent } from './features/location/location-list/location-list.component';
 import { RestaurantListComponent } from './features/location/restaurant-list/restaurant-list.component';
+import { ReviewListComponent } from './features/review/review-list/review-list.component';
+import { UserReviewListComponent } from './features/review/user-review-list/user-review-list.component';
+import { AddUserReviewComponent } from './features/review/add-user-review/add-user-review.component';
+import { EditUserReviewComponent } from './features/review/edit-user-review/edit-user-review.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { RestaurantListComponent } from './features/location/restaurant-list/res
     LoginComponent,
     RegisterComponent,
     LocationListComponent,
-    RestaurantListComponent
+    RestaurantListComponent,
+    ReviewListComponent,
+    UserReviewListComponent,
+    AddUserReviewComponent,
+    EditUserReviewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,36 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ReviewService {
+
+  constructor(private http: HttpClient) { }
+
+  getReviewsByRestaurant(id: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-reviews-by-restaurant?id=${id}`);
+  }
+
+  getReviewsByUser(): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-reviews-by-user`);
+  }
+
+  getReviewById(id: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-review-by-id?id=${id}`);
+  }
+
+  addUserReview(model: any): Observable<void> {
+    return this.http.post<void>(`${environment.apiBaseUrl}/api/Review/add-user-review`, model);
+  }
+
+  updateUserReview(id: any, updateCategoryRequest: any): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}/api/Review/update-user-review`, updateCategoryRequest);
+  }
+
+  deleteUserReview(id: any): Observable<any> {
+    return this.http.delete<any>(`${environment.apiBaseUrl}/api/Review/delete-user-review/${id}?addAuth=true`)
+  }
+}

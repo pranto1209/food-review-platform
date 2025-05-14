@@ -6,17 +6,17 @@
         <table class="table table-bordered mt-3">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>SN</th>
                     <th>Area</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let location of locations">
-                    <td>{{location.id}}</td>
+                <tr *ngFor="let location of locations.data; let i = index">
+                    <td>{{i + 1}}</td>
                     <td>{{location.area}}</td>
                     <td>
-                        <a class="btn btn-primary" [routerLink]="['/restaurant', location.id]">View Restaurant</a>
+                        <a class="btn btn-primary" [routerLink]="['/restaurant']" [queryParams]="{ id: location.id }">View Restaurant</a>
                     </td>
                 </tr>
             </tbody>

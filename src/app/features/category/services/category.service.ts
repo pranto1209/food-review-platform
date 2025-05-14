@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { AddCategoryRequest } from '../models/add-category-request.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Category } from '../models/category.model';
 import { environment } from 'src/environments/environment';
-import { UpdateCategoryRequest } from '../models/update-category-request.model';
+
 import { CookieService } from 'ngx-cookie-service';
+import { AddCategoryRequest } from '../models/add-category-request.model';
+import { UpdateCategoryRequest } from '../models/update-category-request.model';
 
 @Injectable({
   providedIn: 'root'

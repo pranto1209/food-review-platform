@@ -1,26 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AddReviewRequest } from '../models/add-review-request.model';
-import { ReviewService } from '../services/review.service';
+import { AddCheckInRequest } from '../models/add-check-in-request.model';
 import { ToastrService } from 'ngx-toastr';
+import { CheckInService } from '../services/check-in.service';
 
 @Component({
-  selector: 'app-add-review',
-  templateUrl: './add-review.component.html',
-  styleUrls: ['./add-review.component.css']
+  selector: 'app-add-check-in',
+  templateUrl: './add-check-in.component.html',
+  styleUrls: ['./add-check-in.component.css']
 })
-export class AddReviewComponent implements OnInit {
+export class AddCheckInComponent implements OnInit {
 
-  model: AddReviewRequest = {
-    rating: 5,
-    comment: '',
+  model: AddCheckInRequest = {
     restaurantId: 0
   };
 
   constructor(
     private route: ActivatedRoute,
-    private reviewService: ReviewService,
+    private checkInService: CheckInService,
     private location: Location,
     private toastr: ToastrService) {
   }
@@ -30,13 +28,13 @@ export class AddReviewComponent implements OnInit {
   }
 
   onFormSubmit() {
-    this.reviewService.addReview(this.model)
+    this.checkInService.addCheckIn(this.model)
       .subscribe({
         next: (response) => {
           this.location.back();
         },
         error: (err) => {
-          this.toastr.error('You have already reviewed this restaurant');
+          this.toastr.error('You have already checked in this restaurant today');
         }
       });
   }

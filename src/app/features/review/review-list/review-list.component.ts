@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from '../services/review.service';
+import { CheckInService } from '../../check-in/services/check-in.service';
 
 @Component({
   selector: 'app-review-list',
@@ -11,15 +12,25 @@ export class ReviewListComponent {
 
   restaurantId: number = 0;
   reviews: any[] = [];
-  userReview: any = null;
+  userCheckIns: any[] = [];
+  userReviews: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private reviewService: ReviewService) {
+    private reviewService: ReviewService,
+    private checkInService: CheckInService) {
+    this.restaurantId = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
   }
 
   ngOnInit(): void {
     this.restaurantId = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
+
+    this.checkInService.getUserCheckInsByRestaurant(this.restaurantId)
+      .subscribe({
+        next: (response) => {
+          this.userCheckIns = response;
+        }
+      });
 
     this.reviewService.getReviewsByRestaurant(this.restaurantId)
       .subscribe({
@@ -28,16 +39,25 @@ export class ReviewListComponent {
         }
       });
 
-    this.reviewService.getUserReviewByRestaurant(this.restaurantId)
+    this.reviewService.getUserReviewsByRestaurant(this.restaurantId)
       .subscribe({
         next: (response) => {
-          this.userReview = response;
+          this.userReviews = response;
         }
       });
   }
 
-  onDelete(): void {
-    this.reviewService.deleteReview(this.userReview.id)
+  onDeleteReview(id: any): void {
+    this.reviewService.deleteReview(id)
+      .subscribe({
+        next: (response) => {
+          this.ngOnInit();
+        }
+      })
+  }
+
+  onDeleteCheckIn(id: any): void {
+    this.checkInService.deleteCheckIn(id)
       .subscribe({
         next: (response) => {
           this.ngOnInit();

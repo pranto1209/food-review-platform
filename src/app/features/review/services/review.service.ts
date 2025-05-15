@@ -14,12 +14,16 @@ export class ReviewService {
     return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-reviews-by-restaurant?id=${id}`);
   }
 
-  getUserReviewByRestaurant(id: any): Observable<any> {
+  getUserReviewsByRestaurant(id: any): Observable<any> {
     return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-user-reviews-by-restaurant?id=${id}`);
   }
 
   getReviewById(id: any): Observable<any> {
     return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-review-by-id?id=${id}`);
+  }
+
+  getReviewsByUser(): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-reviews-by-user`);
   }
 
   addReview(model: any): Observable<void> {

@@ -1,21 +1,25 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']">Food Review Platform</a>
+    <a class="navbar-brand"><strong>Food Review Platform</strong></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/']">Home</a>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/']" routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">Home</a>
         </li>
         <li *ngIf="user !== undefined" class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/user-review']">Review</a>
+          <a class="nav-link active" aria-current="page" [routerLink]="['/user-review']" routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">Review</a>
         </li>
         <li *ngIf="user !== undefined" class="nav-item">
-          <a class="nav-link active" aria-current="page" [routerLink]="['/check-ins']">Check In</a>
-        </li> -->
+          <a class="nav-link active" aria-current="page" [routerLink]="['/user-check-in']"
+            routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Check In</a>
+        </li>
       </ul>
 
       <div class="d-flex">
@@ -28,7 +32,7 @@
 
         <ng-template #showLogout>
           <div class="d-flex align-items-center">
-            <span>{{user?.email}}</span>
+            <span><strong>{{user?.email}}</strong></span>
             <button class="btn btn-primary ms-3" (click)="onLogout()">Logout</button>
           </div>
         </ng-template>

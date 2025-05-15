@@ -41,4 +41,11 @@ export class LoginComponent {
         }
       });
   }
+
+  signInWithFacebook(): void {
+  }
+
+  signInWithGoogle(): void {
+    
+  }
 }

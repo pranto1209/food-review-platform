@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf="user !== undefined" class="container">
 
     <h5 class="mt-3">My Check In</h5>
 
@@ -39,7 +39,7 @@
 
 </div>
 
-<div class="container">
+<div *ngIf="user !== undefined" class="container">
 
     <h5 class="mt-3">My Review</h5>
 

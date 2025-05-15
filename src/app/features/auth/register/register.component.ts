@@ -11,6 +11,7 @@ import { RegisterRequest } from '../models/register-request.model';
 export class RegisterComponent {
 
   model: RegisterRequest = {
+    userName: '',
     email: '',
     password: ''
   };
@@ -29,5 +30,12 @@ export class RegisterComponent {
           alert('User already exists');
         }
       });
+  }
+
+  registerWithFacebook(): void {
+  }
+
+  registerWithGoogle(): void {
+
   }
 }

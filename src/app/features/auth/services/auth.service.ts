@@ -17,11 +17,11 @@ export class AuthService {
     private cookieService: CookieService) { }
 
   login(model: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/login`, model);
+    return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/login-user`, model);
   }
 
   registration(model: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/register`, model);
+    return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/register-user`, model);
   }
 
   setUser(user: User): void {

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { LoginRequest } from '../models/login-request.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginResponse } from '../models/login-response.model';
 import { HttpClient } from '@angular/common/http';
@@ -17,22 +16,17 @@ export class AuthService {
   constructor(private http: HttpClient,
     private cookieService: CookieService) { }
 
-  login(request: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${environment.apiBaseUrl}/api/Auth/login`, {
-      email: request.email,
-      password: request.password
-    });
+  login(model: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/login`, model);
   }
 
-  registration(request: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${environment.apiBaseUrl}/api/Auth/register`, {
-      email: request.email,
-      password: request.password
-    });
+  registration(model: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/register`, model);
   }
 
   setUser(user: User): void {
     this.$user.next(user);
+    localStorage.setItem('user-id', user.userId);
     localStorage.setItem('user-email', user.email);
     localStorage.setItem('user-roles', user.roles.join(','));
   }
@@ -42,13 +36,15 @@ export class AuthService {
   }
 
   getUser(): User | undefined {
+    const userId = localStorage.getItem('user-id');
     const email = localStorage.getItem('user-email');
     const roles = localStorage.getItem('user-roles');
 
-    if (email && roles) {
+    if (userId && email && roles) {
       const user: User = {
+        userId: userId,
         email: email,
-        roles: roles.split(',')
+        roles: roles.split(','),
       };
 
       return user;

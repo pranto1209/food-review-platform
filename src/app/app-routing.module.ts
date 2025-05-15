@@ -50,7 +50,8 @@ const routes: Routes = [
   },
   {
     path: 'user-check-in',
-    component: UserCheckInListComponent
+    component: UserCheckInListComponent,
+    // canActivate: [authGuard]
   },
   {
     path: 'check-in/add',

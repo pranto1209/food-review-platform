@@ -34,9 +34,6 @@ export class AddReviewComponent implements OnInit {
       .subscribe({
         next: (response) => {
           this.location.back();
-        },
-        error: (err) => {
-          this.toastr.error('You have already reviewed this restaurant');
         }
       });
   }

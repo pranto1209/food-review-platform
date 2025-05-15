@@ -18,8 +18,8 @@ export class CheckInService {
     return this.http.get<any>(`${environment.apiBaseUrl}/api/CheckIn/get-check-ins-by-user`);
   }
 
-  addCheckIn(model: any): Observable<void> {
-    return this.http.post<void>(`${environment.apiBaseUrl}/api/CheckIn/add-check-in`, model);
+  addCheckIn(model: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}/api/CheckIn/add-check-in`, model);
   }
   
   deleteCheckIn(id: any): Observable<any> {

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { LocationService } from '../services/location.service';
-import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -24,7 +23,7 @@ export class RestaurantListComponent {
     this.locationService.getRestaurantsByLocation(this.locationId)
       .subscribe({
         next: (response) => {
-          this.restaurants = response;
+          this.restaurants = response.data;
         }
       });
   }

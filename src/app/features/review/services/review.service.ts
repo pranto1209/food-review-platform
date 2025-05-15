@@ -26,8 +26,8 @@ export class ReviewService {
     return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-reviews-by-user`);
   }
 
-  addReview(model: any): Observable<void> {
-    return this.http.post<void>(`${environment.apiBaseUrl}/api/Review/add-review`, model);
+  addReview(model: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}/api/Review/add-review`, model);
   }
 
   updateReview(model: any): Observable<any> {

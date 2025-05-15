@@ -34,7 +34,8 @@ export class AddCheckInComponent implements OnInit {
           this.location.back();
         },
         error: (err) => {
-          this.toastr.error('You have already checked in this restaurant today');
+          alert('You have already checked in this restaurant today');
+          this.location.back();
         }
       });
   }

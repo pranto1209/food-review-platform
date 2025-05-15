@@ -11,35 +11,34 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  model: LoginRequest;
+  model: LoginRequest = {
+    email: '',
+    password: ''
+  };
 
   constructor(private authService: AuthService,
     private cookieService: CookieService,
     private router: Router) {
-    this.model = {
-      email: '',
-      password: ''
-    };
   }
 
   onFormSubmit(): void {
     this.authService.login(this.model)
-    .subscribe({
-      next: (response) => {
-        // Set Auth Cookie
-        this.cookieService.set('Authorization', `Bearer ${response.token}`,
-        undefined, '/', undefined, true, 'Strict');
+      .subscribe({
+        next: (response) => {
+          this.cookieService.set('Authorization', `Bearer ${response.token}`,
+            undefined, '/', undefined, true, 'Strict');
 
-        // Set User
-        this.authService.setUser({
-          email: response.email,
-          roles: response.roles
-        });
+          this.authService.setUser({
+            userId: response.userId,
+            email: response.email,
+            roles: response.roles
+          });
 
-        // Redirect back to Home
-        this.router.navigateByUrl('/');
-
-      }
-    });
+          this.router.navigateByUrl('/');
+        },
+        error: (error) => {
+          alert('Incorrect email or password');
+        }
+      });
   }
 }

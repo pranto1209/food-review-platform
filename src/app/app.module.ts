@@ -18,7 +18,6 @@ import { AddReviewComponent } from './features/review/add-review/add-review.comp
 import { EditReviewComponent } from './features/review/edit-review/edit-review.component';
 import { UserReviewListComponent } from './features/review/user-review-list/user-review-list.component';
 import { UserCheckInListComponent } from './features/check-in/user-check-in-list/user-check-in-list.component';
-import { AddCheckInComponent } from './features/check-in/add-check-in/add-check-in.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { AddCheckInComponent } from './features/check-in/add-check-in/add-check-
     AddReviewComponent,
     EditReviewComponent,
     UserReviewListComponent,
-    UserCheckInListComponent,
-    AddCheckInComponent
+    UserCheckInListComponent
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,6 @@ import { AddReviewComponent } from './features/review/add-review/add-review.comp
 import { EditReviewComponent } from './features/review/edit-review/edit-review.component';
 import { UserReviewListComponent } from './features/review/user-review-list/user-review-list.component';
 import { UserCheckInListComponent } from './features/check-in/user-check-in-list/user-check-in-list.component';
-import { AddCheckInComponent } from './features/check-in/add-check-in/add-check-in.component';
 
 const routes: Routes = [
   {
@@ -51,11 +50,6 @@ const routes: Routes = [
   {
     path: 'user-check-in',
     component: UserCheckInListComponent,
-    canActivate: [authGuard]
-  },
-  {
-    path: 'check-in/add',
-    component: AddCheckInComponent,
     canActivate: [authGuard]
   },
 ];

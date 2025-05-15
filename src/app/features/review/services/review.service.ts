@@ -14,6 +14,10 @@ export class ReviewService {
     return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-reviews-by-restaurant?id=${id}`);
   }
 
+  getAverageRatingByRestaurant(id: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-average-rating-by-restaurant?id=${id}`);
+  }
+
   getUserReviewsByRestaurant(id: any): Observable<any> {
     return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-user-reviews-by-restaurant?id=${id}`);
   }

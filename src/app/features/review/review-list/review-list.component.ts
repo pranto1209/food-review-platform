@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ReviewService } from '../services/review.service';
 import { CheckInService } from '../../check-in/services/check-in.service';
 import { AuthService } from '../../auth/services/auth.service';
+import { AddCheckInRequest } from '../../check-in/models/add-check-in-request.model';
 
 @Component({
   selector: 'app-review-list',
@@ -11,45 +12,39 @@ import { AuthService } from '../../auth/services/auth.service';
 })
 export class ReviewListComponent {
 
-  user: any;
   restaurantId: number = 0;
-  reviews: any[] = [];
+
+  user: any;
   userCheckIns: any[] = [];
   userReviews: any[] = [];
+  reviews: any[] = [];
+  averageRating: number = 0;
+
+  model: AddCheckInRequest = {
+    restaurantId: 0
+  };
 
   constructor(
     private route: ActivatedRoute,
     private authService: AuthService,
     private reviewService: ReviewService,
     private checkInService: CheckInService) {
-    this.restaurantId = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
   }
 
   ngOnInit(): void {
-    this.onAuthUser();
-    
     this.restaurantId = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
 
-    this.checkInService.getUserCheckInsByRestaurant(this.restaurantId)
-      .subscribe({
-        next: (response) => {
-          this.userCheckIns = response;
-        }
-      });
+    this.model.restaurantId = this.restaurantId;
 
-    this.reviewService.getReviewsByRestaurant(this.restaurantId)
-      .subscribe({
-        next: (response) => {
-          this.reviews = response;
-        }
-      });
+    this.onAuthUser();
 
-    this.reviewService.getUserReviewsByRestaurant(this.restaurantId)
-      .subscribe({
-        next: (response) => {
-          this.userReviews = response;
-        }
-      });
+    this.onUserCheckIn();
+
+    this.onUserReview();
+
+    this.onReview();
+
+    this.onAverageRating();
   }
 
   onAuthUser(): void {
@@ -63,6 +58,36 @@ export class ReviewListComponent {
     this.user = this.authService.getUser();
   }
 
+  onUserCheckIn(): void {
+    this.checkInService.getUserCheckInsByRestaurant(this.restaurantId)
+      .subscribe({
+        next: (response) => {
+          this.userCheckIns = response;
+        }
+      });
+  }
+
+  onUserReview(): void {
+    this.reviewService.getUserReviewsByRestaurant(this.restaurantId)
+      .subscribe({
+        next: (response) => {
+          this.userReviews = response;
+        }
+      });
+  }
+
+  addCheckIn(): void {
+    this.checkInService.addCheckIn(this.model)
+      .subscribe({
+        next: (response) => {
+          this.onUserCheckIn();
+        },
+        error: (err) => {
+          alert('You have already checked in this restaurant today');
+        }
+      });
+  }
+
   onDeleteReview(id: any): void {
     this.reviewService.deleteReview(id)
       .subscribe({
@@ -70,6 +95,24 @@ export class ReviewListComponent {
           this.ngOnInit();
         }
       })
+  }
+
+  onReview(): void {
+    this.reviewService.getReviewsByRestaurant(this.restaurantId)
+      .subscribe({
+        next: (response) => {
+          this.reviews = response;
+        }
+      });
+  }
+
+  onAverageRating(): void {
+    this.reviewService.getAverageRatingByRestaurant(this.restaurantId)
+      .subscribe({
+        next: (response) => {
+          this.averageRating = response;
+        }
+      });
   }
 
   onDeleteCheckIn(id: any): void {

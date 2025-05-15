@@ -25,17 +25,21 @@ export const authGuard: CanActivateFn = (route, state) => {
       // Logout
       authService.logout();
       return router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } })
-    } else {
+    } 
+    else {
       // Token is still valid
+      const allowedRoles = ['User', 'Admin', 'Moderator']; // Add allowed roles here
 
-      if (user.roles.includes('User')) {
+      if (user.roles.some(role => allowedRoles.includes(role))) {
         return true;
-      } else {
+      } 
+      else {
         alert('Unauthorized');
         return false;
       }
     }
-  } else {
+  } 
+  else {
     // Logout
     authService.logout();
     return router.createUrlTree(['/login'], { queryParams: { returnUrl: state.url } })

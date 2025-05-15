@@ -10,8 +10,11 @@ import { LocationService } from '../services/location.service';
 export class LocationListComponent {
 
   locations: any;
-  totalCount?: number;
-  list: number[] = [];
+
+  paginationList: number[] = [];
+
+  searchText: string = '';
+  isPaginated = true;
   pageNumber = 1;
   pageSize = 5;
 
@@ -19,45 +22,31 @@ export class LocationListComponent {
   }
 
   ngOnInit(): void {
-    this.locationService.getLocations(undefined, true, this.pageNumber, this.pageSize)
+    this.locationService.getLocations(this.searchText, this.isPaginated, this.pageNumber, this.pageSize)
       .subscribe({
         next: (response) => {
           this.locations = response.data;
-          this.totalCount = response.total;
-          this.list = new Array(Math.ceil(response.total / this.pageSize))
+          this.paginationList = new Array(Math.ceil(response.total / this.pageSize));
         }
       });
   }
 
-  onLocation() {
-    this.locationService.getLocations(undefined, true, this.pageNumber, this.pageSize)
-      .subscribe({
-        next: (response) => {
-          this.locations = response.data;
-        }
-      });
-  }
-
-  onSearch(searchText: string) {
-    this.locationService.getLocations(searchText, true, this.pageNumber, this.pageSize)
-      .subscribe({
-        next: (response) => {
-          this.locations = response.data;
-        }
-      });
+  onSearch(queryText: string) {
+    this.searchText = queryText;
+    this.ngOnInit();
   }
 
   getPage(pageNumber: number) {
     this.pageNumber = pageNumber;
-    this.onLocation();
+    this.ngOnInit();
   }
 
   getNextPage() {
-    if (this.pageNumber + 1 > this.list.length) {
+    if (this.pageNumber + 1 > this.paginationList.length) {
       return;
     }
     this.pageNumber += 1;
-    this.onLocation();
+    this.ngOnInit();
   }
 
   getPrevPage() {
@@ -65,6 +54,6 @@ export class LocationListComponent {
       return;
     }
     this.pageNumber -= 1;
-    this.onLocation();
+    this.ngOnInit();
   }
 }

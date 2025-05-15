@@ -41,22 +41,22 @@ const routes: Routes = [
   {
     path: 'review/add',
     component: AddReviewComponent,
-    // canActivate: [authGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'review/edit',
     component: EditReviewComponent,
-    // canActivate: [authGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'user-check-in',
     component: UserCheckInListComponent,
-    // canActivate: [authGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'check-in/add',
     component: AddCheckInComponent,
-    // canActivate: [authGuard]
+    canActivate: [authGuard]
   },
 ];
 

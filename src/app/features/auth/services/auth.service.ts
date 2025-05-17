@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { LoginResponse } from '../models/login-response.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { User } from '../models/user.model';
+import { User } from '../models/user';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +12,10 @@ export class AuthService {
 
   $user = new BehaviorSubject<User | undefined>(undefined);
 
-  constructor(private http: HttpClient,
-    private cookieService: CookieService) { }
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService
+  ) { }
 
   login(model: any): Observable<any> {
     return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/login-user`, model);
@@ -26,12 +27,13 @@ export class AuthService {
 
   setUser(user: User): void {
     this.$user.next(user);
+
     localStorage.setItem('user-id', user.userId);
     localStorage.setItem('user-email', user.email);
     localStorage.setItem('user-roles', user.roles.join(','));
   }
 
-  user() : Observable<User | undefined> {
+  user(): Observable<User | undefined> {
     return this.$user.asObservable();
   }
 
@@ -58,5 +60,4 @@ export class AuthService {
     this.cookieService.delete('Authorization', '/');
     this.$user.next(undefined);
   }
-
 }

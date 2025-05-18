@@ -1,0 +1,41 @@
+<div class="container">
+
+    <h5 class="mt-3">My Review List</h5>
+
+    <ng-container>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>User Name</th>
+                    <th>Restaurant Name</th>
+                    <th>Area</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                    <th>Review Time</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="!userReviews || userReviews.length === 0">
+                    <td colspan="8" class="text-center">No record to display</td>
+                </tr>
+                <tr *ngFor="let userReview of userReviews; let i = index" class="align-middle">
+                    <td>{{i + 1}}</td>
+                    <td>{{userReview.userName}}</td>
+                    <td>{{userReview.restaurantName}}</td>
+                    <td>{{userReview.area}}</td>
+                    <td>{{userReview.rating}}</td>
+                    <td>{{userReview.comment}}</td>
+                    <td>{{userReview.reviewTime | date: 'dd/MM/yyyy, hh:mm:ss a'}}</td>
+                    <td class="text-center">
+                        <a class="btn btn-warning" [routerLink]="['/review/edit']" [queryParams]="{ id: userReview.id }">Edit</a>
+                        <button type="button" class="btn btn-danger ms-2" (click)="onDelete(userReview.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </ng-container>
+
+</div>

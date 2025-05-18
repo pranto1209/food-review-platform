@@ -1,0 +1,28 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment.development';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CheckInService {
+
+  constructor(private http: HttpClient) { }
+
+  getUserCheckInsByRestaurant(id: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/CheckIn/get-user-check-ins-by-restaurant?id=${id}`);
+  }
+
+  getCheckInsByUser(): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/CheckIn/get-check-ins-by-user`);
+  }
+
+  addCheckIn(model: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}/api/CheckIn/add-check-in`, model);
+  }
+  
+  deleteCheckIn(id: any): Observable<any> {
+    return this.http.delete<any>(`${environment.apiBaseUrl}/api/CheckIn/delete-check-in/${id}`)
+  }
+}

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { LocationService } from '../../services/location.service';
 import { FilteringRequest } from '../../../../shared/models/filtering.request';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-location-list',
@@ -15,6 +16,7 @@ import { FilteringRequest } from '../../../../shared/models/filtering.request';
 })
 export class LocationListComponent {
 
+  user: any;
   locations: any;
 
   totalPage: any;
@@ -28,11 +30,24 @@ export class LocationListComponent {
 
   constructor(
     private locationService: LocationService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
+    this. onAuthUser();
+
     this.onLocation();
+  }
+
+  onAuthUser(): void {
+    this.authService.user().subscribe({
+        next: (response) => {
+          this.user = response;
+        }
+      });
+
+    this.user = this.authService.getUser();
   }
 
   onLocation(): void {
@@ -51,7 +66,7 @@ export class LocationListComponent {
   }
 
   goToViewRestaurant(locationId: number) {
-    this.router.navigate(['/review'],
+    this.router.navigate(['/restaurant'],
       {
         queryParams: { id: locationId }
       });
@@ -72,7 +87,7 @@ export class LocationListComponent {
     this.locationService.deleteLocation(id)
       .subscribe({
         next: (response) => {
-          this.ngOnInit();
+          this.onLocation();
         }
       })
   }

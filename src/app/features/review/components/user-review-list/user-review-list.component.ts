@@ -13,13 +13,16 @@ import { ReviewService } from '../../services/review.service';
   styleUrl: './user-review-list.component.scss'
 })
 export class UserReviewListComponent {
-  
+
   userReviews: any[] = [];
 
   constructor(private reviewService: ReviewService) { }
 
   ngOnInit(): void {
+    this.onReview();
+  }
 
+  onReview(): void {
     this.reviewService.getReviewsByUser()
       .subscribe({
         next: (response) => {
@@ -32,7 +35,7 @@ export class UserReviewListComponent {
     this.reviewService.deleteReview(id)
       .subscribe({
         next: (response) => {
-          this.ngOnInit();
+          this.onReview();
         }
       })
   }

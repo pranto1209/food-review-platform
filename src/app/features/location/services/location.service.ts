@@ -22,7 +22,7 @@ export class LocationService {
   }
 
   getLocationById(id: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Location/get-loation-by-id?id=${id}`);
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/Location/get-location-by-id?id=${id}`);
   }
 
   addLocation(model: any): Observable<any> {

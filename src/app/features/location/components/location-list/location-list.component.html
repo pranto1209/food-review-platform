@@ -7,7 +7,7 @@
             <input type="text" class="form-control" #queryText>
             <button type="button" class="btn btn-info ms-3" (click)="onSearch(queryText.value)">Search</button>
         </div>
-        <button class="btn btn-primary" (click)="goToAddLocation()">Add Location</button>
+        <button *ngIf="user && user.roles.includes('Admin')" class="btn btn-primary" (click)="goToAddLocation()">Add Location</button>
     </div>
 
     <ng-container>
@@ -27,9 +27,11 @@
                     <td>{{ (request.pageNumber - 1) * request.pageSize + i + 1 }}</td>
                     <td>{{location.area}}</td>
                     <td>
-                        <button class="btn btn-primary ms-2" (click)="goToViewRestaurant(location.id)">View Review</button>
+                        <button class="btn btn-primary ms-2" (click)="goToViewRestaurant(location.id)">View Restaurant</button>
+                        @if(user && user.roles.includes('Admin')) {
                         <button class="btn btn-warning ms-2" (click)="goToEditLocation(location.id)">Edit</button>
                         <button class="btn btn-danger ms-2" (click)="onDeleteLocation(location.id)">Delete</button>
+                        }
                     </td>
                 </tr>
             </tbody>

@@ -101,11 +101,21 @@ export class ReviewListComponent {
       });
   }
 
+  onDeleteCheckIn(id: any): void {
+    this.checkInService.deleteCheckIn(id)
+      .subscribe({
+        next: (response) => {
+          this.onUserCheckIn();
+        }
+      })
+  }
+
   onDeleteReview(id: any): void {
     this.reviewService.deleteReview(id)
       .subscribe({
         next: (response) => {
-          this.ngOnInit();
+          this.onUserReview();
+          this.onReview();
         }
       })
   }
@@ -117,14 +127,5 @@ export class ReviewListComponent {
           this.averageRating = response;
         }
       });
-  }
-
-  onDeleteCheckIn(id: any): void {
-    this.checkInService.deleteCheckIn(id)
-      .subscribe({
-        next: (response) => {
-          this.ngOnInit();
-        }
-      })
   }
 }

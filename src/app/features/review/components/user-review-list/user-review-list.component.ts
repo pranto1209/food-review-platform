@@ -23,7 +23,7 @@ export class UserReviewListComponent {
     this.reviewService.getReviewsByUser()
       .subscribe({
         next: (response) => {
-          this.userReviews = response;
+          this.userReviews = response.data;
         }
       });
   }

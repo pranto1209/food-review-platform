@@ -29,7 +29,7 @@ export class UserCheckInListComponent {
     this.checkInService.getCheckInsByUser()
       .subscribe({
         next: (response) => {
-          this.userCheckIns = response;
+          this.userCheckIns = response.data;
         }
       });
   }

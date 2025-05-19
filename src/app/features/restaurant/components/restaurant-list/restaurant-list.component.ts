@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { LocationService } from '../../services/location.service';
+import { RestaurantService } from '../../services/restaurant.service';
 import { FilteringRequest } from '../../../../shared/models/filtering.request';
 
 @Component({
@@ -29,7 +29,7 @@ export class RestaurantListComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private locationService: LocationService
+    private restaurantService: RestaurantService
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +39,7 @@ export class RestaurantListComponent {
   }
 
   onRestaurant(): void {
-    this.locationService.getRestaurantsByLocation(this.locationId, this.request)
+    this.restaurantService.getRestaurantsByLocation(this.locationId, this.request)
       .subscribe({
         next: (response) => {
           this.restaurants = response.data;

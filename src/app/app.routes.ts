@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './features/auth/components/login/login.component';
 import { RegisterComponent } from './features/auth/components/register/register.component';
 import { LocationListComponent } from './features/location/components/location-list/location-list.component';
-import { RestaurantListComponent } from './features/location/components/restaurant-list/restaurant-list.component';
+import { RestaurantListComponent } from './features/restaurant/components/restaurant-list/restaurant-list.component';
 import { ReviewListComponent } from './features/review/components/review-list/review-list.component';
 import { UserCheckInListComponent } from './features/check-in/components/user-check-in-list/user-check-in-list.component';
 import { UserReviewListComponent } from './features/review/components/user-review-list/user-review-list.component';

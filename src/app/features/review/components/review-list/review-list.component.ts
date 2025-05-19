@@ -66,7 +66,7 @@ export class ReviewListComponent {
     this.checkInService.getUserCheckInsByRestaurant(this.restaurantId)
       .subscribe({
         next: (response) => {
-          this.userCheckIns = response;
+          this.userCheckIns = response.data;
         }
       });
   }
@@ -75,7 +75,16 @@ export class ReviewListComponent {
     this.reviewService.getUserReviewsByRestaurant(this.restaurantId)
       .subscribe({
         next: (response) => {
-          this.userReviews = response;
+          this.userReviews = response.data;
+        }
+      });
+  }
+
+  onReview(): void {
+    this.reviewService.getReviewsByRestaurant(this.restaurantId)
+      .subscribe({
+        next: (response) => {
+          this.reviews = response.data;
         }
       });
   }
@@ -99,15 +108,6 @@ export class ReviewListComponent {
           this.ngOnInit();
         }
       })
-  }
-
-  onReview(): void {
-    this.reviewService.getReviewsByRestaurant(this.restaurantId)
-      .subscribe({
-        next: (response) => {
-          this.reviews = response;
-        }
-      });
   }
 
   onAverageRating(): void {

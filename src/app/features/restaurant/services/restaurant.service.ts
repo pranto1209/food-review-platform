@@ -20,4 +20,16 @@ export class RestaurantService {
 
     return this.http.get<any>(`${environment.apiBaseUrl}/api/Restaurant/get-restaurants-by-location?id=${id}`, { params });
   }
+
+  addRestaurant(model: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}/api/Restaurant/add-restaurant`, model);
+  }
+
+  updateRestaurant(model: any): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}/api/Restaurant/update-restaurant`, model);
+  }
+
+  deleteRestaurant(id: any): Observable<any> {
+    return this.http.delete<any>(`${environment.apiBaseUrl}/api/Restaurant/delete-restaurant/${id}`)
+  }
 }

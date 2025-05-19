@@ -21,12 +21,12 @@ export class EditReviewComponent implements OnInit {
   userReview: any;
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private reviewService: ReviewService
   ) { }
 
   ngOnInit(): void {
-    this.reviewId = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
+    this.reviewId = parseInt(this.activatedRoute.snapshot.queryParamMap.get('id') ?? '0');
 
     this.reviewService.getReviewById(this.reviewId)
       .subscribe({

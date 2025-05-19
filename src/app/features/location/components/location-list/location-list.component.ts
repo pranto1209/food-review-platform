@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LocationService } from '../../services/location.service';
 import { FilteringRequest } from '../../../../shared/models/filtering.request';
 
@@ -26,7 +26,10 @@ export class LocationListComponent {
     pageSize: 10
   }
 
-  constructor(private locationService: LocationService) { }
+  constructor(
+    private locationService: LocationService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.onLocation();
@@ -46,6 +49,35 @@ export class LocationListComponent {
     this.request.searchText = queryText;
     this.onLocation();
   }
+
+  goToViewRestaurant(locationId: number) {
+    this.router.navigate(['/review'],
+      {
+        queryParams: { id: locationId }
+      });
+  }
+
+  goToAddLocation() {
+    this.router.navigate(['/location/add']);
+  }
+
+  goToEditLocation(locationId: number) {
+    this.router.navigate(['/location/edit'],
+      {
+        queryParams: { id: locationId }
+      });
+  }
+
+  onDeleteLocation(id: any): void {
+    this.locationService.deleteLocation(id)
+      .subscribe({
+        next: (response) => {
+          this.ngOnInit();
+        }
+      })
+  }
+
+
 
   getPage(pageNumber: any): void {
     this.request.pageNumber = pageNumber;

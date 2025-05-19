@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CheckInService } from '../../services/check-in.service';
 
 @Component({
@@ -16,10 +16,7 @@ export class UserCheckInListComponent {
 
   userCheckIns: any[] = [];
 
-  constructor(
-    private route: ActivatedRoute,
-    private checkInService: CheckInService
-  ) { }
+  constructor(private checkInService: CheckInService) { }
 
   ngOnInit(): void {
     this.onCheckIn();
@@ -38,7 +35,7 @@ export class UserCheckInListComponent {
     this.checkInService.deleteCheckIn(id)
       .subscribe({
         next: (response) => {
-          this.ngOnInit();
+          this.onCheckIn();
         }
       })
   }

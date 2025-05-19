@@ -30,14 +30,14 @@ export class ReviewListComponent {
   };
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private reviewService: ReviewService,
     private checkInService: CheckInService
   ) { }
 
   ngOnInit(): void {
-    this.restaurantId = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
+    this.restaurantId = parseInt(this.activatedRoute.snapshot.queryParamMap.get('id') ?? '0');
 
     this.model.restaurantId = this.restaurantId;
 

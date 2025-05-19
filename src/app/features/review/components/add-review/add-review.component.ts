@@ -24,12 +24,12 @@ export class AddReviewComponent implements OnInit {
   };
 
   constructor(
-    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private reviewService: ReviewService
   ) { }
 
   ngOnInit() {
-    this.model.restaurantId = parseInt(this.route.snapshot.queryParamMap.get('id') ?? '0');
+    this.model.restaurantId = parseInt(this.activatedRoute.snapshot.queryParamMap.get('id') ?? '0');
   }
 
   onFormSubmit() {

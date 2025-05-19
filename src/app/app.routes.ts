@@ -9,6 +9,8 @@ import { UserReviewListComponent } from './features/review/components/user-revie
 import { AddReviewComponent } from './features/review/components/add-review/add-review.component';
 import { EditReviewComponent } from './features/review/components/edit-review/edit-review.component';
 import { authGuard } from './core/guards/auth.guard';
+import { AddRestaurantComponent } from './features/restaurant/components/add-restaurant/add-restaurant.component';
+import { AddLocationComponent } from './features/location/components/add-location/add-location.component';
 
 export const routes: Routes = [
     {
@@ -24,17 +26,28 @@ export const routes: Routes = [
         component: LocationListComponent
     },
     {
+        path: 'location/add',
+        component: AddLocationComponent
+    },
+    {
+        path: 'location/edit',
+        component: AddLocationComponent
+    },
+    {
         path: 'restaurant',
         component: RestaurantListComponent
     },
     {
-        path: 'review',
-        component: ReviewListComponent
+        path: 'restaurant/add',
+        component: AddRestaurantComponent
     },
     {
-        path: 'user-check-in',
-        component: UserCheckInListComponent,
-        canActivate: [authGuard]
+        path: 'restaurant/edit',
+        component: AddRestaurantComponent
+    },
+    {
+        path: 'review',
+        component: ReviewListComponent
     },
     {
         path: 'user-review',
@@ -49,6 +62,11 @@ export const routes: Routes = [
     {
         path: 'review/edit',
         component: EditReviewComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'user-check-in',
+        component: UserCheckInListComponent,
         canActivate: [authGuard]
     },
 ];

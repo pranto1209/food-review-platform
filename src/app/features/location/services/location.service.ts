@@ -20,4 +20,20 @@ export class LocationService {
 
     return this.http.get<any>(`${environment.apiBaseUrl}/api/Location/get-locations`, { params });
   }
+
+  getLocationById(id: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/Location/get-loation-by-id?id=${id}`);
+  }
+
+  addLocation(model: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiBaseUrl}/api/Location/add-location`, model);
+  }
+
+  updateLocation(model: any): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}/api/Location/update-location`, model);
+  }
+
+  deleteLocation(id: any): Observable<any> {
+    return this.http.delete<any>(`${environment.apiBaseUrl}/api/Location/delete-location/${id}`)
+  }
 }

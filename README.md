@@ -80,3 +80,9 @@ For more information on using the Angular CLI, including detailed command refere
 ![](docs/10.png)
 
 ![](docs/11.png)
+
+![](docs/12.png)
+
+![](docs/13.png)
+
+![](docs/14.png)

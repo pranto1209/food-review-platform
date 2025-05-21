@@ -1,93 +1,6 @@
-<div *ngIf="user" class="container">
+<app-user-check-in-list *ngIf="user && user.roles.includes('User')" [restaurantId]="restaurantId" />
 
-    <h5 class="mt-3">My Check In</h5>
-
-    <div class="d-flex justify-content-between mt-3">
-        <!-- <div class="d-flex"></div> -->
-        <button class="btn btn-primary" (click)="addCheckIn()">Add Check In</button>
-    </div>
-
-    <ng-container>
-        <table class="table table-bordered mt-3">
-            <thead>
-                <tr>
-                    <th>SN</th>
-                    <th>User Name</th>
-                    <th>Restaurant Name</th>
-                    <th>Area</th>
-                    <th>Check In Time</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngIf="!userCheckIns || userCheckIns.length === 0">
-                    <td colspan="6" class="text-center">No record to display</td>
-                </tr>
-                <tr *ngFor="let userCheckIn of userCheckIns; let i = index" class="align-middle">
-                    <td>{{i + 1}}</td>
-                    <td>{{userCheckIn.userName}}</td>
-                    <td>{{userCheckIn.restaurantName}}</td>
-                    <td>{{userCheckIn.area}}</td>
-                    <td>{{userCheckIn.checkInTime | date: 'dd/MM/yyyy, hh:mm:ss a'}}</td>
-                    <td class="text-center">
-                        <button type="button" class="btn btn-danger ms-2"
-                            (click)="onDeleteCheckIn(userCheckIn.id)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-    </ng-container>
-
-</div>
-
-<div *ngIf="user" class="container">
-
-    <h5 class="mt-3">My Review</h5>
-
-    <div class="d-flex justify-content-between mt-3">
-        <!-- <div class="d-flex"></div> -->
-        <a class="btn btn-primary" [routerLink]="['/review/add']" [queryParams]="{ id: restaurantId }">Add Review</a>
-    </div>
-
-    <ng-container>
-        <table class="table table-bordered mt-3">
-            <thead>
-                <tr>
-                    <th>SN</th>
-                    <th>User Name</th>
-                    <th>Restaurant Name</th>
-                    <th>Area</th>
-                    <th>Rating</th>
-                    <th>Comment</th>
-                    <th>Review Time</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngIf="!userReviews || userReviews.length === 0">
-                    <td colspan="8" class="text-center">No record to display</td>
-                </tr>
-                <tr *ngFor="let userReview of userReviews; let i = index" class="align-middle">
-                    <td>{{i + 1}}</td>
-                    <td>{{userReview.userName}}</td>
-                    <td>{{userReview.restaurantName}}</td>
-                    <td>{{userReview.area}}</td>
-                    <td>{{userReview.rating}}</td>
-                    <td>{{userReview.comment}}</td>
-                    <td>{{userReview.reviewTime | date: 'dd/MM/yyyy, hh:mm:ss a'}}</td>
-                    <td class="text-center">
-                        <a class="btn btn-warning" [routerLink]="['/review/edit']" [queryParams]="{ id: userReview.id }">Edit</a>
-                        <button class="btn btn-danger ms-2" (click)="onDeleteReview(userReview.id)">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-    </ng-container>
-
-</div>
-
+<app-user-review-list *ngIf="user && user.roles.includes('User')" [restaurantId]="restaurantId" />
 
 <div class="container">
 
@@ -115,7 +28,7 @@
                     <td colspan="7" class="text-center">No record to display</td>
                 </tr>
                 <tr *ngFor="let review of reviews; let i = index" class="align-middle">
-                    <td>{{i + 1}}</td>
+                    <td>{{ (request.pageNumber - 1) * request.pageSize + i + 1 }}</td>
                     <td>{{review.userName}}</td>
                     <td>{{review.restaurantName}}</td>
                     <td>{{review.area}}</td>
@@ -125,6 +38,8 @@
                 </tr>
             </tbody>
         </table>
+
+        <app-pagination [pageNumber]="request.pageNumber" [totalPage]="totalPage" (pageChanged)="getPage($event)" />
 
     </ng-container>
 

@@ -4,19 +4,22 @@ import { Router, RouterModule } from '@angular/router';
 import { LocationService } from '../../services/location.service';
 import { FilteringRequest } from '../../../../shared/models/filtering.request';
 import { AuthService } from '../../../auth/services/auth.service';
+import { PaginationComponent } from "../../../../shared/components/pagination/pagination.component";
+import { User } from '../../../../shared/models/user';
 
 @Component({
   selector: 'app-location-list',
   imports: [
     CommonModule,
     RouterModule,
-  ],
+    PaginationComponent
+],
   templateUrl: './location-list.component.html',
   styleUrl: './location-list.component.scss'
 })
 export class LocationListComponent {
 
-  user: any;
+  user?: User;
   locations: any;
 
   totalPage: any;
@@ -92,24 +95,8 @@ export class LocationListComponent {
       })
   }
 
-
-
   getPage(pageNumber: any): void {
     this.request.pageNumber = pageNumber;
-    this.onLocation();
-  }
-
-  getNextPage(): void {
-    if (this.request.pageNumber < this.totalPage) {
-      this.request.pageNumber += 1;
-    }
-    this.onLocation();
-  }
-
-  getPrevPage(): void {
-    if (this.request.pageNumber > 1) {
-      this.request.pageNumber -= 1;
-    }
     this.onLocation();
   }
 }

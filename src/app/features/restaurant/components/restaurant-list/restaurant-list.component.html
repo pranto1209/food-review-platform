@@ -3,7 +3,7 @@
     <h5 class="mt-3">Restaurant List</h5>
 
     <div *ngIf="user && user.roles.includes('Admin')" class="d-flex justify-content-between mt-3">
-        <!-- <div class="d-flex"></div> -->
+        <!-- <div></div> -->
         <button class="btn btn-primary" (click)="goToAddRestaurant()">Add Restaurant</button>
     </div>
 
@@ -36,24 +36,7 @@
             </tbody>
         </table>
 
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                <li class="page-item" [class.disabled]="request.pageNumber === 1">
-                    <a class="page-link" (click)="getPrevPage()">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li *ngFor="let page of [].constructor(totalPage); let i = index" class="page-item"
-                    [class.active]="request.pageNumber === (i + 1)">
-                    <a class="page-link" (click)="getPage(i + 1)">{{i + 1}}</a>
-                </li>
-                <li class="page-item" [class.disabled]="request.pageNumber === totalPage">
-                    <a class="page-link" (click)="getNextPage()">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <app-pagination [pageNumber]="request.pageNumber" [totalPage]="totalPage" (pageChanged)="getPage($event)" />
 
     </ng-container>
 

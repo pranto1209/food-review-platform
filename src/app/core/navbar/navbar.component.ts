@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../features/auth/services/auth.service';
+import { User } from '../../shared/models/user';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,7 @@ import { AuthService } from '../../features/auth/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  user: any;
+  user?: User;
 
   constructor(
     private authService: AuthService,
@@ -27,12 +28,11 @@ export class NavbarComponent implements OnInit {
         this.user = response;
       }
     });
-
     this.user = this.authService.getUser();
   }
 
   onLogout(): void {
     this.authService.logout();
-    this.router.navigateByUrl('/');
+    this.router.navigate(['/']);
   }
 }

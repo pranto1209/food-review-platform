@@ -4,19 +4,22 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RestaurantService } from '../../services/restaurant.service';
 import { FilteringRequest } from '../../../../shared/models/filtering.request';
 import { AuthService } from '../../../auth/services/auth.service';
+import { PaginationComponent } from "../../../../shared/components/pagination/pagination.component";
+import { User } from '../../../../shared/models/user';
 
 @Component({
   selector: 'app-restaurant-list',
   imports: [
     CommonModule,
     RouterModule,
+    PaginationComponent
   ],
   templateUrl: './restaurant-list.component.html',
   styleUrl: './restaurant-list.component.scss'
 })
 export class RestaurantListComponent {
 
-  user: any
+  user?: User;
   locationId: number = 0;
   restaurants: any[] = [];
 
@@ -46,10 +49,10 @@ export class RestaurantListComponent {
 
   onAuthUser(): void {
     this.authService.user().subscribe({
-        next: (response) => {
-          this.user = response;
-        }
-      });
+      next: (response) => {
+        this.user = response;
+      }
+    });
 
     this.user = this.authService.getUser();
   }
@@ -65,7 +68,10 @@ export class RestaurantListComponent {
   }
 
   goToViewReview(restaurantId: number) {
-    this.router.navigate(['/review'], { queryParams: { id: restaurantId } });
+    this.router.navigate(['/review'],
+      {
+        queryParams: { id: restaurantId }
+      });
   }
 
   goToAddRestaurant() {
@@ -93,20 +99,6 @@ export class RestaurantListComponent {
 
   getPage(pageNumber: any): void {
     this.request.pageNumber = pageNumber;
-    this.onRestaurant();
-  }
-
-  getNextPage(): void {
-    if (this.request.pageNumber < this.totalPage) {
-      this.request.pageNumber += 1;
-    }
-    this.onRestaurant();
-  }
-
-  getPrevPage(): void {
-    if (this.request.pageNumber > 1) {
-      this.request.pageNumber -= 1;
-    }
     this.onRestaurant();
   }
 }

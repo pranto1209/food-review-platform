@@ -12,11 +12,11 @@
           <a class="nav-link" [routerLink]="['/']" routerLinkActive="active-link"
             [routerLinkActiveOptions]="{ exact: true }"><strong>Home</strong></a>
         </li>
-        <li *ngIf="user" class="nav-item">
+        <li *ngIf="user && user.roles.includes('User')" class="nav-item">
           <a class="nav-link" [routerLink]="['/user-review']" routerLinkActive="active-link"
             [routerLinkActiveOptions]="{ exact: true }"><strong>Review</strong></a>
         </li>
-        <li *ngIf="user" class="nav-item">
+        <li *ngIf="user && user.roles.includes('User')" class="nav-item">
           <a class="nav-link" [routerLink]="['/user-check-in']" routerLinkActive="active-link"
             [routerLinkActiveOptions]="{ exact: true }"><strong>Check In</strong></a>
         </li>
@@ -24,17 +24,20 @@
 
 
       <div class="d-flex">
-        <ng-container *ngIf="!user;else showLogout">
+        @if(!user){
+        <ng-container>
           <a [routerLink]="['/login']" class="btn btn-primary">Login</a>
           <a [routerLink]="['/register']" class="btn btn-secondary ms-2">Register</a>
         </ng-container>
-
-        <ng-template #showLogout>
+        }
+        @else {
+        <ng-container>
           <div class="d-flex align-items-center">
             <span><strong>{{user.email}}</strong></span>
             <button class="btn btn-danger ms-3" (click)="onLogout()">Logout</button>
           </div>
-        </ng-template>
+        </ng-container>
+        }
       </div>
     </div>
   </div>

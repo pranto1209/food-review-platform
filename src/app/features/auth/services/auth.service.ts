@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { User } from '../models/user';
+import { User } from '../../../shared/models/user';
 import { environment } from '../../../../environments/environment.development';
 
 @Injectable({
@@ -25,16 +25,16 @@ export class AuthService {
     return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/register-user`, model);
   }
 
+  user(): Observable<User | undefined> {
+    return this.$user.asObservable();
+  }
+
   setUser(user: User): void {
     this.$user.next(user);
 
     localStorage.setItem('user-id', user.userId);
     localStorage.setItem('user-email', user.email);
     localStorage.setItem('user-roles', user.roles.join(','));
-  }
-
-  user(): Observable<User | undefined> {
-    return this.$user.asObservable();
   }
 
   getUser(): User | undefined {
@@ -48,10 +48,8 @@ export class AuthService {
         email: email,
         roles: roles.split(','),
       };
-
       return user;
     }
-
     return undefined;
   }
 

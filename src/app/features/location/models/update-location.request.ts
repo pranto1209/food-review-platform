@@ -1,6 +1,6 @@
 export interface UpdateLocationRequest {
   id: number;
-  area: string;
+  name: string;
   latitude?: number;
   longitude?: number;
 }

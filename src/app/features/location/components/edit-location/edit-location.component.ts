@@ -39,7 +39,7 @@ export class EditLocationComponent implements OnInit {
   onFormSubmit(): void {
     const updateLocationRequest: UpdateLocationRequest = {
       id: this.locationId,
-      area: this.location.area,
+      name: this.location.name,
       latitude: this.location.latitude,
       longitude: this.location.longitude
     };

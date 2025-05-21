@@ -19,7 +19,7 @@ import { AddLocationRequest } from '../../models/add-location.request';
 export class AddLocationComponent implements OnInit {
 
   model: AddLocationRequest = {
-    area: '',
+    name: '',
     latitude: 0.0,
     longitude: 0.0
   };

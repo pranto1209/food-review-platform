@@ -24,7 +24,7 @@
                 <tr *ngFor="let restaurant of restaurants; let i = index" class="align-middle">
                     <td>{{ (request.pageNumber - 1) * request.pageSize + i + 1 }}</td>
                     <td>{{restaurant.name}}</td>
-                    <td>{{restaurant.area}}</td>
+                    <td>{{restaurant.locationName}}</td>
                     <td>
                         <button class="btn btn-primary ms-2" (click)="goToViewReview(restaurant.id)">View Review</button>
                         @if(user && user.roles.includes('Admin')) {

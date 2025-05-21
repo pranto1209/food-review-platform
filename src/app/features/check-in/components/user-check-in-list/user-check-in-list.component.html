@@ -27,7 +27,7 @@
                     <td>{{ (request.pageNumber - 1) * request.pageSize + i + 1 }}</td>
                     <td>{{userCheckIn.userName}}</td>
                     <td>{{userCheckIn.restaurantName}}</td>
-                    <td>{{userCheckIn.area}}</td>
+                    <td>{{userCheckIn.locationName}}</td>
                     <td>{{userCheckIn.checkInTime | date: 'dd/MM/yyyy, hh:mm:ss a'}}</td>
                     <td class="text-center">
                         <button type="button" class="btn btn-danger ms-2" (click)="onDelete(userCheckIn.id)">Delete</button>

@@ -1,5 +1,5 @@
 export interface AddLocationRequest {
-  area: string;
+  name: string;
   latitude?: number;
   longitude?: number;
 }

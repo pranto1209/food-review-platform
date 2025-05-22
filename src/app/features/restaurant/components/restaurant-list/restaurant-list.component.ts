@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RestaurantService } from '../../services/restaurant.service';
 import { FilteringRequest } from '../../../../shared/models/filtering.request';
@@ -12,18 +13,19 @@ import { User } from '../../../../shared/models/user';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     PaginationComponent
   ],
   templateUrl: './restaurant-list.component.html',
   styleUrl: './restaurant-list.component.scss'
 })
-export class RestaurantListComponent {
+export class RestaurantListComponent implements OnInit {
 
   user?: User;
   locationId: number = 0;
   restaurants: any[] = [];
 
-  totalPage: any;
+  totalPage: number = 0;
 
   request: FilteringRequest = {
     searchText: '',
@@ -65,6 +67,11 @@ export class RestaurantListComponent {
           this.totalPage = Math.ceil(response.total / this.request.pageSize);
         }
       });
+  }
+
+  onSearch(queryText: any): void {
+    this.request.searchText = queryText;
+    this.onRestaurant();
   }
 
   goToViewReview(restaurantId: number) {

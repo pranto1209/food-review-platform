@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { LocationService } from '../../services/location.service';
 import { FilteringRequest } from '../../../../shared/models/filtering.request';
@@ -12,17 +13,18 @@ import { User } from '../../../../shared/models/user';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     PaginationComponent
 ],
   templateUrl: './location-list.component.html',
   styleUrl: './location-list.component.scss'
 })
-export class LocationListComponent {
+export class LocationListComponent implements OnInit {
 
   user?: User;
   locations: any;
 
-  totalPage: any;
+  totalPage: number = 0;
 
   request: FilteringRequest = {
     searchText: '',

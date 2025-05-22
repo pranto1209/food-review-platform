@@ -16,7 +16,7 @@
                 <tr>
                     <th>SN</th>
                     <th>Area</th>
-                    <th>Action</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,7 +26,7 @@
                 <tr *ngFor="let location of locations; let i = index" class="align-middle">
                     <td>{{ (request.pageNumber - 1) * request.pageSize + i + 1 }}</td>
                     <td>{{location.name}}</td>
-                    <td>
+                    <td class="text-center">
                         <button class="btn btn-primary ms-2" (click)="goToViewRestaurant(location.id)">View Restaurant</button>
                         @if(user && user.roles.includes('Admin')) {
                         <button class="btn btn-warning ms-2" (click)="goToEditLocation(location.id)">Edit</button>

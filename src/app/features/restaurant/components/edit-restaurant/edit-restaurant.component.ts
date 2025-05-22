@@ -10,7 +10,7 @@ import { UpdateRestaurantRequest } from '../../models/update-restaurant.request'
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
+    FormsModule
   ],
   templateUrl: './edit-restaurant.component.html',
   styleUrl: './edit-restaurant.component.scss'

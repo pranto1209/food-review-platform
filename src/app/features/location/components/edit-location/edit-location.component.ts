@@ -10,7 +10,7 @@ import { UpdateLocationRequest } from '../../models/update-location.request';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
+    FormsModule
   ],
   templateUrl: './edit-location.component.html',
   styleUrl: './edit-location.component.scss'

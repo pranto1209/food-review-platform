@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CheckInService } from '../../services/check-in.service';
 import { FilteringRequest } from '../../../../shared/models/filtering.request';
@@ -11,12 +12,13 @@ import { AddCheckInRequest } from '../../models/add-check-in.request';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     PaginationComponent
   ],
   templateUrl: './user-check-in-list.component.html',
   styleUrl: './user-check-in-list.component.scss'
 })
-export class UserCheckInListComponent {
+export class UserCheckInListComponent implements OnInit {
   @Input() restaurantId: number = 0;
 
   userCheckIns: any[] = [];
@@ -25,7 +27,7 @@ export class UserCheckInListComponent {
     restaurantId: 0
   };
 
-  totalPage: any;
+  totalPage: number = 0;
   
   request: FilteringRequest = {
     searchText: '',

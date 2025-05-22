@@ -10,7 +10,7 @@ import { UpdateReviewRequest } from '../../models/update-review.request';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
+    FormsModule
   ],
   templateUrl: './edit-review.component.html',
   styleUrl: './edit-review.component.scss'

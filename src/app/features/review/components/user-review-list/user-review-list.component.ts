@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Host, Input, Optional } from '@angular/core';
+import { Component, Host, Input, OnInit, Optional } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ReviewService } from '../../services/review.service';
 import { FilteringRequest } from '../../../../shared/models/filtering.request';
@@ -11,17 +12,18 @@ import { ReviewListComponent } from '../review-list/review-list.component';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     PaginationComponent
 ],
   templateUrl: './user-review-list.component.html',
   styleUrl: './user-review-list.component.scss'
 })
-export class UserReviewListComponent {
+export class UserReviewListComponent implements OnInit {
   @Input() restaurantId: number = 0;
 
   userReviews: any[] = [];
 
-  totalPage: any;
+  totalPage: number = 0;
 
   request: FilteringRequest = {
     searchText: '',

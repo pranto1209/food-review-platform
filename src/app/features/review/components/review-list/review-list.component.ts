@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AuthService } from '../../../auth/services/auth.service';
 import { ReviewService } from '../../services/review.service';
@@ -14,6 +15,7 @@ import { PaginationComponent } from "../../../../shared/components/pagination/pa
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     UserCheckInListComponent,
     UserReviewListComponent,
     PaginationComponent
@@ -21,14 +23,14 @@ import { PaginationComponent } from "../../../../shared/components/pagination/pa
   templateUrl: './review-list.component.html',
   styleUrl: './review-list.component.scss'
 })
-export class ReviewListComponent {
+export class ReviewListComponent implements OnInit {
 
   restaurantId: number = 0;
   user?: User;
   reviews: any[] = [];
   averageRating: number = 0;
 
-  totalPage: any;
+  totalPage: number = 0;
 
   request: FilteringRequest = {
     searchText: '',

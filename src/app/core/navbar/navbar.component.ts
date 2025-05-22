@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../features/auth/services/auth.service';
 import { User } from '../../shared/models/user';
@@ -8,7 +9,8 @@ import { User } from '../../shared/models/user';
   selector: 'app-navbar',
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'

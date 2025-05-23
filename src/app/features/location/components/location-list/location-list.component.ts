@@ -34,9 +34,9 @@ export class LocationListComponent implements OnInit {
   }
 
   constructor(
-    private locationService: LocationService,
     private router: Router,
     private authService: AuthService,
+    private locationService: LocationService
   ) { }
 
   ngOnInit(): void {

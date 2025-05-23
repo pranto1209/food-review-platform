@@ -20,8 +20,8 @@ export class NavbarComponent implements OnInit {
   user?: User;
 
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +30,12 @@ export class NavbarComponent implements OnInit {
         this.user = response;
       }
     });
+    
     this.user = this.authService.getUser();
+  }
+
+  goToUserSettings(): void {
+    this.router.navigate(['/user-settings']);
   }
 
   onLogout(): void {

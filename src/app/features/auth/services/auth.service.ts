@@ -25,6 +25,18 @@ export class AuthService {
     return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/register-user`, model);
   }
 
+  getUserById(): Observable<any> {
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/Auth/get-user-by-id`);
+  }
+
+  editUser(model: any): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}/api/Auth/edit-user`, model);
+  }
+
+  deleteUser(model: any): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}/api/Auth/delete-user`, model);
+  }
+
   user(): Observable<User | undefined> {
     return this.$user.asObservable();
   }
@@ -32,19 +44,19 @@ export class AuthService {
   setUser(user: User): void {
     this.$user.next(user);
 
-    localStorage.setItem('user-id', user.userId);
+    localStorage.setItem('user-id', user.id);
     localStorage.setItem('user-email', user.email);
     localStorage.setItem('user-roles', user.roles.join(','));
   }
 
   getUser(): User | undefined {
-    const userId = localStorage.getItem('user-id');
+    const id = localStorage.getItem('user-id');
     const email = localStorage.getItem('user-email');
     const roles = localStorage.getItem('user-roles');
 
-    if (userId && email && roles) {
+    if (id && email && roles) {
       const user: User = {
-        userId: userId,
+        id: id,
         email: email,
         roles: roles.split(','),
       };

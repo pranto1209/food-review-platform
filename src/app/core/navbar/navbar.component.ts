@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
         this.user = response;
       }
     });
-    
+
     this.user = this.authService.getUser();
   }
 

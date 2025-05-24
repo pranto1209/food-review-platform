@@ -28,27 +28,25 @@ export class EditLocationComponent implements OnInit {
   ngOnInit(): void {
     this.locationId = parseInt(this.activatedRoute.snapshot.queryParamMap.get('id') ?? '0');
 
-    this.locationService.getLocationById(this.locationId)
-      .subscribe({
-        next: (response) => {
-          this.location = response;
-        }
-      });
+    this.locationService.getLocationById(this.locationId).subscribe({
+      next: (response) => {
+        this.location = response;
+      }
+    });
   }
 
   onFormSubmit(): void {
-    const updateLocationRequest: UpdateLocationRequest = {
+    const model: UpdateLocationRequest = {
       id: this.locationId,
       name: this.location.name,
       latitude: this.location.latitude,
       longitude: this.location.longitude
     };
 
-    this.locationService.updateLocation(updateLocationRequest)
-      .subscribe({
-        next: (response) => {
-          window.history.back();
-        }
-      });
+    this.locationService.updateLocation(model).subscribe({
+      next: (response) => {
+        window.history.back();
+      }
+    });
   }
 }

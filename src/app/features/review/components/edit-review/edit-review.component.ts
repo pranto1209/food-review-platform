@@ -28,26 +28,24 @@ export class EditReviewComponent implements OnInit {
   ngOnInit(): void {
     this.reviewId = parseInt(this.activatedRoute.snapshot.queryParamMap.get('id') ?? '0');
 
-    this.reviewService.getReviewById(this.reviewId)
-      .subscribe({
-        next: (response) => {
-          this.userReview = response;
-        }
-      });
+    this.reviewService.getReviewById(this.reviewId).subscribe({
+      next: (response) => {
+        this.userReview = response;
+      }
+    });
   }
 
   onFormSubmit(): void {
-    const updateUserReviewRequest: UpdateReviewRequest = {
+    const model: UpdateReviewRequest = {
       id: this.reviewId,
       rating: this.userReview.rating,
       comment: this.userReview.comment ?? ''
     };
 
-    this.reviewService.updateReview(updateUserReviewRequest)
-      .subscribe({
-        next: (response) => {
-          window.history.back();
-        }
-      });
+    this.reviewService.updateReview(model).subscribe({
+      next: (response) => {
+        window.history.back();
+      }
+    });
   }
 }

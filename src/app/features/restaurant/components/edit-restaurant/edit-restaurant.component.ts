@@ -28,25 +28,23 @@ export class EditRestaurantComponent implements OnInit {
   ngOnInit(): void {
     this.restaurantId = parseInt(this.activatedRoute.snapshot.queryParamMap.get('id') ?? '0');
 
-    this.restaurantService.getRestaurantById(this.restaurantId)
-      .subscribe({
-        next: (response) => {
-          this.restaurant = response;
-        }
-      });
+    this.restaurantService.getRestaurantById(this.restaurantId).subscribe({
+      next: (response) => {
+        this.restaurant = response;
+      }
+    });
   }
 
   onFormSubmit(): void {
-    const updateRestaurantRequest: UpdateRestaurantRequest = {
+    const model: UpdateRestaurantRequest = {
       id: this.restaurantId,
       name: this.restaurant.name
     };
 
-    this.restaurantService.updateRestaurant(updateRestaurantRequest)
-      .subscribe({
-        next: (response) => {
-          window.history.back();
-        }
-      });
+    this.restaurantService.updateRestaurant(model).subscribe({
+      next: (response) => {
+        window.history.back();
+      }
+    });
   }
 }

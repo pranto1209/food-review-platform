@@ -28,13 +28,13 @@ export class UserCheckInListComponent implements OnInit {
   };
 
   totalPage: number = 0;
-  
+
   request: FilteringRequest = {
     searchText: '',
     isPaginated: true,
     pageNumber: 1,
     pageSize: 10
-  }
+  };
 
   constructor(private checkInService: CheckInService) { }
 
@@ -50,44 +50,40 @@ export class UserCheckInListComponent implements OnInit {
   }
 
   onCheckIn(): void {
-    this.checkInService.getCheckInsByUser(this.request)
-      .subscribe({
-        next: (response) => {
-          this.userCheckIns = response.data;
-          this.totalPage = Math.ceil(response.total / this.request.pageSize);
-        }
-      });
+    this.checkInService.getCheckInsByUser(this.request).subscribe({
+      next: (response) => {
+        this.userCheckIns = response.data;
+        this.totalPage = Math.ceil(response.total / this.request.pageSize);
+      }
+    });
   }
 
   onCheckInByRestaurant(): void {
-    this.checkInService.getUserCheckInsByRestaurant(this.restaurantId, this.request)
-      .subscribe({
-        next: (response) => {
-          this.userCheckIns = response.data;
-          this.totalPage = Math.ceil(response.total / this.request.pageSize);
-        }
-      });
+    this.checkInService.getUserCheckInsByRestaurant(this.restaurantId, this.request).subscribe({
+      next: (response) => {
+        this.userCheckIns = response.data;
+        this.totalPage = Math.ceil(response.total / this.request.pageSize);
+      }
+    });
   }
 
   addCheckIn(): void {
-    this.checkInService.addCheckIn(this.model)
-      .subscribe({
-        next: (response) => {
-          this.ngOnInit();
-        },
-        error: (err) => {
-          alert('You have already checked in this restaurant today');
-        }
-      });
+    this.checkInService.addCheckIn(this.model).subscribe({
+      next: (response) => {
+        this.ngOnInit();
+      },
+      error: (err) => {
+        alert('You have already checked in this restaurant today');
+      }
+    });
   }
 
   onDelete(id: any): void {
-    this.checkInService.deleteCheckIn(id)
-      .subscribe({
-        next: (response) => {
-          this.ngOnInit();
-        }
-      })
+    this.checkInService.deleteCheckIn(id).subscribe({
+      next: (response) => {
+        this.ngOnInit();
+      }
+    });
   }
 
   getPage(pageNumber: any): void {

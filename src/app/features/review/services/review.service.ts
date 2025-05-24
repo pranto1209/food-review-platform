@@ -18,11 +18,11 @@ export class ReviewService {
       .set('pageNumber', request.pageNumber)
       .set('pageSize', request.pageSize);
 
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-reviews-by-restaurant?id=${id}`, { params });
+    return this.http.get<any>(`${environment.apiBaseUrl}/Review/get-reviews-by-restaurant?id=${id}`, { params });
   }
 
   getAverageRatingByRestaurant(id: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-average-rating-by-restaurant?id=${id}`);
+    return this.http.get<any>(`${environment.apiBaseUrl}/Review/get-average-rating-by-restaurant?id=${id}`);
   }
 
   getUserReviewsByRestaurant(id: any, request: FilteringRequest): Observable<any> {
@@ -32,11 +32,11 @@ export class ReviewService {
       .set('pageNumber', request.pageNumber)
       .set('pageSize', request.pageSize);
 
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-user-reviews-by-restaurant?id=${id}`, { params });
+    return this.http.get<any>(`${environment.apiBaseUrl}/Review/get-user-reviews-by-restaurant?id=${id}`, { params });
   }
 
   getReviewById(id: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-review-by-id?id=${id}`);
+    return this.http.get<any>(`${environment.apiBaseUrl}/Review/get-review-by-id?id=${id}`);
   }
 
   getReviewsByUser(request: FilteringRequest): Observable<any> {
@@ -46,18 +46,18 @@ export class ReviewService {
       .set('pageNumber', request.pageNumber)
       .set('pageSize', request.pageSize);
       
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Review/get-reviews-by-user`, { params });
+    return this.http.get<any>(`${environment.apiBaseUrl}/Review/get-reviews-by-user`, { params });
   }
 
   addReview(model: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}/api/Review/add-review`, model);
+    return this.http.post<any>(`${environment.apiBaseUrl}/Review/add-review`, model);
   }
 
   updateReview(model: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiBaseUrl}/api/Review/update-review`, model);
+    return this.http.put<any>(`${environment.apiBaseUrl}/Review/update-review`, model);
   }
 
   deleteReview(id: any): Observable<any> {
-    return this.http.delete<any>(`${environment.apiBaseUrl}/api/Review/delete-review/${id}`)
+    return this.http.delete<any>(`${environment.apiBaseUrl}/Review/delete-review/${id}`)
   }
 }

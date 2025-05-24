@@ -14,7 +14,7 @@ import { ReviewListComponent } from '../review-list/review-list.component';
     RouterModule,
     FormsModule,
     PaginationComponent
-],
+  ],
   templateUrl: './user-review-list.component.html',
   styleUrl: './user-review-list.component.scss'
 })
@@ -30,11 +30,11 @@ export class UserReviewListComponent implements OnInit {
     isPaginated: true,
     pageNumber: 1,
     pageSize: 10
-  }
+  };
 
   constructor(
     private router: Router,
-    private reviewService: ReviewService, 
+    private reviewService: ReviewService,
     @Host() @Optional() private reviewListComponent: ReviewListComponent
   ) { }
 
@@ -49,23 +49,21 @@ export class UserReviewListComponent implements OnInit {
   }
 
   onReview(): void {
-    this.reviewService.getReviewsByUser(this.request)
-      .subscribe({
-        next: (response) => {
-          this.userReviews = response.data;
-          this.totalPage = Math.ceil(response.total / this.request.pageSize);
-        }
-      });
+    this.reviewService.getReviewsByUser(this.request).subscribe({
+      next: (response) => {
+        this.userReviews = response.data;
+        this.totalPage = Math.ceil(response.total / this.request.pageSize);
+      }
+    });
   }
 
   onReviewByRestaurant(): void {
-    this.reviewService.getUserReviewsByRestaurant(this.restaurantId, this.request)
-      .subscribe({
-        next: (response) => {
-          this.userReviews = response.data;
-          this.totalPage = Math.ceil(response.total / this.request.pageSize);
-        }
-      });
+    this.reviewService.getUserReviewsByRestaurant(this.restaurantId, this.request).subscribe({
+      next: (response) => {
+        this.userReviews = response.data;
+        this.totalPage = Math.ceil(response.total / this.request.pageSize);
+      }
+    });
   }
 
   goToAddReview() {
@@ -83,16 +81,15 @@ export class UserReviewListComponent implements OnInit {
   }
 
   onDelete(id: any): void {
-    this.reviewService.deleteReview(id)
-      .subscribe({
-        next: (response) => {
-          this.ngOnInit();
-          if (this.restaurantId > 0) {
-            this.reviewListComponent.onReview();
-            this.reviewListComponent.onAverageRating();
-          }
+    this.reviewService.deleteReview(id).subscribe({
+      next: (response) => {
+        this.ngOnInit();
+        if (this.restaurantId > 0) {
+          this.reviewListComponent.onReview();
+          this.reviewListComponent.onAverageRating();
         }
-      })
+      }
+    });
   }
 
   getPage(pageNumber: any): void {

@@ -18,22 +18,22 @@ export class LocationService {
       .set('pageNumber', request.pageNumber)
       .set('pageSize', request.pageSize);
 
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Location/get-locations`, { params });
+    return this.http.get<any>(`${environment.apiBaseUrl}/Location/get-locations`, { params });
   }
 
   getLocationById(id: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Location/get-location-by-id?id=${id}`);
+    return this.http.get<any>(`${environment.apiBaseUrl}/Location/get-location-by-id?id=${id}`);
   }
 
   addLocation(model: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}/api/Location/add-location`, model);
+    return this.http.post<any>(`${environment.apiBaseUrl}/Location/add-location`, model);
   }
 
   updateLocation(model: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiBaseUrl}/api/Location/update-location`, model);
+    return this.http.put<any>(`${environment.apiBaseUrl}/Location/update-location`, model);
   }
 
   deleteLocation(id: any): Observable<any> {
-    return this.http.delete<any>(`${environment.apiBaseUrl}/api/Location/delete-location/${id}`)
+    return this.http.delete<any>(`${environment.apiBaseUrl}/Location/delete-location/${id}`)
   }
 }

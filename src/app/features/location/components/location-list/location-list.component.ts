@@ -15,7 +15,7 @@ import { User } from '../../../../shared/models/user';
     RouterModule,
     FormsModule,
     PaginationComponent
-],
+  ],
   templateUrl: './location-list.component.html',
   styleUrl: './location-list.component.scss'
 })
@@ -31,7 +31,7 @@ export class LocationListComponent implements OnInit {
     isPaginated: true,
     pageNumber: 1,
     pageSize: 10
-  }
+  };
 
   constructor(
     private router: Router,
@@ -40,29 +40,28 @@ export class LocationListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this. onAuthUser();
+    this.onAuthUser();
 
     this.onLocation();
   }
 
   onAuthUser(): void {
     this.authService.user().subscribe({
-        next: (response) => {
-          this.user = response;
-        }
-      });
+      next: (response) => {
+        this.user = response;
+      }
+    });
 
     this.user = this.authService.getUser();
   }
 
   onLocation(): void {
-    this.locationService.getLocations(this.request)
-      .subscribe({
-        next: (response) => {
-          this.locations = response.data;
-          this.totalPage = Math.ceil(response.total / this.request.pageSize);
-        }
-      });
+    this.locationService.getLocations(this.request).subscribe({
+      next: (response) => {
+        this.locations = response.data;
+        this.totalPage = Math.ceil(response.total / this.request.pageSize);
+      }
+    });
   }
 
   onSearch(queryText: any): void {
@@ -89,12 +88,11 @@ export class LocationListComponent implements OnInit {
   }
 
   onDeleteLocation(id: any): void {
-    this.locationService.deleteLocation(id)
-      .subscribe({
-        next: (response) => {
-          this.onLocation();
-        }
-      })
+    this.locationService.deleteLocation(id).subscribe({
+      next: (response) => {
+        this.onLocation();
+      }
+    });
   }
 
   getPage(pageNumber: any): void {

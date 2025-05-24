@@ -28,33 +28,30 @@ export class UserSettingsComponent {
   ) { }
 
   ngOnInit(): void {
-
-    this.authService.getUserById()
-      .subscribe({
-        next: (response) => {
-          this.user = response;
-        }
-      });
+    this.authService.getUserById().subscribe({
+      next: (response) => {
+        this.user = response;
+      }
+    });
   }
 
   onFormSubmit(): void {
-    const editUserRequest: EditUserRequest = {
+    const model: EditUserRequest = {
       userName: this.user.userName,
       email: this.user.email,
       password: this.newPassword,
       currentPassword: this.currentPassword
     };
 
-    this.authService.editUser(editUserRequest)
-      .subscribe({
-        next: (response) => {
-          this.authService.logout();
-          this.router.navigate(['/']);
-        },
-        error: (error) => {
-          alert('Invalid email or password');
-        }
-      });
+    this.authService.editUser(model).subscribe({
+      next: (response) => {
+        this.authService.logout();
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        alert('Invalid email or password');
+      }
+    });
   }
 
   onDelete(): void {
@@ -64,19 +61,18 @@ export class UserSettingsComponent {
       return;
     }
 
-    const deleteUserRequest: DeleteUserRequest = {
+    const model: DeleteUserRequest = {
       currentPassword: this.currentPassword
     };
 
-    this.authService.deleteUser(deleteUserRequest)
-      .subscribe({
-        next: (response) => {
-          this.authService.logout();
-          this.router.navigate(['/']);
-        },
-        error: (error) => {
-          alert('Invalid email or password');
-        }
-      });
+    this.authService.deleteUser(model).subscribe({
+      next: (response) => {
+        this.authService.logout();
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        alert('Invalid email or password');
+      }
+    });
   }
 }

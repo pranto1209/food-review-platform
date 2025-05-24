@@ -18,7 +18,7 @@ export class CheckInService {
       .set('pageNumber', request.pageNumber)
       .set('pageSize', request.pageSize);
 
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/CheckIn/get-user-check-ins-by-restaurant?id=${id}`, { params });
+    return this.http.get<any>(`${environment.apiBaseUrl}/CheckIn/get-user-check-ins-by-restaurant?id=${id}`, { params });
   }
 
   getCheckInsByUser(request: FilteringRequest): Observable<any> {
@@ -28,14 +28,14 @@ export class CheckInService {
       .set('pageNumber', request.pageNumber)
       .set('pageSize', request.pageSize);
       
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/CheckIn/get-check-ins-by-user`, { params });
+    return this.http.get<any>(`${environment.apiBaseUrl}/CheckIn/get-check-ins-by-user`, { params });
   }
 
   addCheckIn(model: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}/api/CheckIn/add-check-in`, model);
+    return this.http.post<any>(`${environment.apiBaseUrl}/CheckIn/add-check-in`, model);
   }
   
   deleteCheckIn(id: any): Observable<any> {
-    return this.http.delete<any>(`${environment.apiBaseUrl}/api/CheckIn/delete-check-in/${id}`)
+    return this.http.delete<any>(`${environment.apiBaseUrl}/CheckIn/delete-check-in/${id}`)
   }
 }

@@ -7,7 +7,7 @@
             <input type="text" class="form-control" #queryText>
             <button type="button" class="btn btn-info ms-3" (click)="onSearch(queryText.value)">Search</button>
         </div>
-        <button *ngIf="user && user.roles.includes('Admin')" class="btn btn-primary" (click)="goToAddRestaurant()">Add Restaurant</button>
+        <button *ngIf="user && user.roles.includes(userRole.Admin)" class="btn btn-primary" (click)="goToAddRestaurant()">Add Restaurant</button>
     </div>
 
     <ng-container>
@@ -30,7 +30,7 @@
                     <td>{{restaurant.locationName}}</td>
                     <td class="text-center">
                         <button class="btn btn-primary ms-2" (click)="goToViewReview(restaurant.id)">View Review</button>
-                        @if(user && user.roles.includes('Admin')) {
+                        @if(user && user.roles.includes(userRole.Admin)) {
                         <button class="btn btn-warning ms-2" (click)="goToEditRestaurant(restaurant.id)">Edit</button>
                         <button class="btn btn-danger ms-2" (click)="onDeleteRestaurant(restaurant.id)">Delete</button>
                         }

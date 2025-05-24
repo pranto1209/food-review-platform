@@ -12,11 +12,11 @@
           <a class="nav-link" aria-current="page" [routerLink]="['/']" routerLinkActive="active-link"
             [routerLinkActiveOptions]="{ exact: true }"><strong>Home</strong></a>
         </li>
-        <li *ngIf="user && user.roles.includes('User')" class="nav-item">
+        <li *ngIf="user && user.roles.includes(userRole.User)" class="nav-item">
           <a class="nav-link" aria-current="page" [routerLink]="['/user-review']" routerLinkActive="active-link"
             [routerLinkActiveOptions]="{ exact: true }"><strong>Review</strong></a>
         </li>
-        <li *ngIf="user && user.roles.includes('User')" class="nav-item">
+        <li *ngIf="user && user.roles.includes(userRole.User)" class="nav-item">
           <a class="nav-link" aria-current="page" [routerLink]="['/user-check-in']" routerLinkActive="active-link"
             [routerLinkActiveOptions]="{ exact: true }"><strong>Check In</strong></a>
         </li>

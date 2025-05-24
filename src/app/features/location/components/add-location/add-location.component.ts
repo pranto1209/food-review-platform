@@ -29,11 +29,10 @@ export class AddLocationComponent implements OnInit {
   ngOnInit() { }
 
   onFormSubmit() {
-    this.locationService.addLocation(this.model)
-      .subscribe({
-        next: (response) => {
-          window.history.back();
-        }
-      });
+    this.locationService.addLocation(this.model).subscribe({
+      next: (response) => {
+        window.history.back();
+      }
+    });
   }
 }

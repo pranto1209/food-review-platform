@@ -18,23 +18,23 @@ export class AuthService {
   ) { }
 
   login(model: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/login-user`, model);
+    return this.http.post<any>(`${environment.apiBaseUrl}/Auth/login-user`, model);
   }
 
   registration(model: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}/api/Auth/register-user`, model);
+    return this.http.post<any>(`${environment.apiBaseUrl}/Auth/register-user`, model);
   }
 
   getUserById(): Observable<any> {
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Auth/get-user-by-id`);
+    return this.http.get<any>(`${environment.apiBaseUrl}/Auth/get-user-by-id`);
   }
 
   editUser(model: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiBaseUrl}/api/Auth/edit-user`, model);
+    return this.http.put<any>(`${environment.apiBaseUrl}/Auth/edit-user`, model);
   }
 
   deleteUser(model: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiBaseUrl}/api/Auth/delete-user`, model);
+    return this.http.post<any>(`${environment.apiBaseUrl}/Auth/delete-user`, model);
   }
 
   user(): Observable<User | undefined> {

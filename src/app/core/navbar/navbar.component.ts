@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../features/auth/services/auth.service';
 import { User } from '../../shared/models/user';
+import { UserRoleEnum } from '../../shared/models/user-role.enum';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +19,7 @@ import { User } from '../../shared/models/user';
 export class NavbarComponent implements OnInit {
 
   user?: User;
+  userRole = UserRoleEnum;
 
   constructor(
     private router: Router,
@@ -30,7 +32,7 @@ export class NavbarComponent implements OnInit {
         this.user = response;
       }
     });
-    
+
     this.user = this.authService.getUser();
   }
 

@@ -18,22 +18,22 @@ export class RestaurantService {
       .set('pageNumber', request.pageNumber)
       .set('pageSize', request.pageSize);
 
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Restaurant/get-restaurants-by-location?id=${id}`, { params });
+    return this.http.get<any>(`${environment.apiBaseUrl}/Restaurant/get-restaurants-by-location?id=${id}`, { params });
   }
 
   getRestaurantById(id: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiBaseUrl}/api/Restaurant/get-restaurant-by-id?id=${id}`);
+    return this.http.get<any>(`${environment.apiBaseUrl}/Restaurant/get-restaurant-by-id?id=${id}`);
   }
 
   addRestaurant(model: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiBaseUrl}/api/Restaurant/add-restaurant`, model);
+    return this.http.post<any>(`${environment.apiBaseUrl}/Restaurant/add-restaurant`, model);
   }
 
   updateRestaurant(model: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiBaseUrl}/api/Restaurant/update-restaurant`, model);
+    return this.http.put<any>(`${environment.apiBaseUrl}/Restaurant/update-restaurant`, model);
   }
 
   deleteRestaurant(id: any): Observable<any> {
-    return this.http.delete<any>(`${environment.apiBaseUrl}/api/Restaurant/delete-restaurant/${id}`)
+    return this.http.delete<any>(`${environment.apiBaseUrl}/Restaurant/delete-restaurant/${id}`)
   }
 }

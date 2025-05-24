@@ -7,6 +7,7 @@ import { FilteringRequest } from '../../../../shared/models/filtering.request';
 import { AuthService } from '../../../auth/services/auth.service';
 import { PaginationComponent } from "../../../../shared/components/pagination/pagination.component";
 import { User } from '../../../../shared/models/user';
+import { UserRoleEnum } from '../../../../shared/models/user-role.enum';
 
 @Component({
   selector: 'app-location-list',
@@ -15,13 +16,14 @@ import { User } from '../../../../shared/models/user';
     RouterModule,
     FormsModule,
     PaginationComponent
-],
+  ],
   templateUrl: './location-list.component.html',
   styleUrl: './location-list.component.scss'
 })
 export class LocationListComponent implements OnInit {
 
   user?: User;
+  userRole = UserRoleEnum;
   locations: any;
 
   totalPage: number = 0;
@@ -31,7 +33,7 @@ export class LocationListComponent implements OnInit {
     isPaginated: true,
     pageNumber: 1,
     pageSize: 10
-  }
+  };
 
   constructor(
     private router: Router,
@@ -40,29 +42,28 @@ export class LocationListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this. onAuthUser();
+    this.onAuthUser();
 
     this.onLocation();
   }
 
   onAuthUser(): void {
     this.authService.user().subscribe({
-        next: (response) => {
-          this.user = response;
-        }
-      });
+      next: (response) => {
+        this.user = response;
+      }
+    });
 
     this.user = this.authService.getUser();
   }
 
   onLocation(): void {
-    this.locationService.getLocations(this.request)
-      .subscribe({
-        next: (response) => {
-          this.locations = response.data;
-          this.totalPage = Math.ceil(response.total / this.request.pageSize);
-        }
-      });
+    this.locationService.getLocations(this.request).subscribe({
+      next: (response) => {
+        this.locations = response.data;
+        this.totalPage = Math.ceil(response.total / this.request.pageSize);
+      }
+    });
   }
 
   onSearch(queryText: any): void {
@@ -89,12 +90,11 @@ export class LocationListComponent implements OnInit {
   }
 
   onDeleteLocation(id: any): void {
-    this.locationService.deleteLocation(id)
-      .subscribe({
-        next: (response) => {
-          this.onLocation();
-        }
-      })
+    this.locationService.deleteLocation(id).subscribe({
+      next: (response) => {
+        this.onLocation();
+      }
+    });
   }
 
   getPage(pageNumber: any): void {

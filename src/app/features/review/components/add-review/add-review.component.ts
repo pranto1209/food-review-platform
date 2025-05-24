@@ -33,11 +33,10 @@ export class AddReviewComponent implements OnInit {
   }
 
   onFormSubmit() {
-    this.reviewService.addReview(this.model)
-      .subscribe({
-        next: (response) => {
-          window.history.back();
-        }
-      });
+    this.reviewService.addReview(this.model).subscribe({
+      next: (response) => {
+        window.history.back();
+      }
+    });
   }
 }

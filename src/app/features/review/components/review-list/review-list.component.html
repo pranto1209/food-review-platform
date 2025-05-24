@@ -1,6 +1,6 @@
-<app-user-check-in-list *ngIf="user && user.roles.includes('User')" [restaurantId]="restaurantId" />
+<app-user-check-in-list *ngIf="user && user.roles.includes(userRole.User)" [restaurantId]="restaurantId" />
 
-<app-user-review-list *ngIf="user && user.roles.includes('User')" [restaurantId]="restaurantId" />
+<app-user-review-list *ngIf="user && user.roles.includes(userRole.User)" [restaurantId]="restaurantId" />
 
 <div class="container">
 

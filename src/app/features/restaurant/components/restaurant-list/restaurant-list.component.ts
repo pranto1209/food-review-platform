@@ -7,6 +7,7 @@ import { FilteringRequest } from '../../../../shared/models/filtering.request';
 import { AuthService } from '../../../auth/services/auth.service';
 import { PaginationComponent } from "../../../../shared/components/pagination/pagination.component";
 import { User } from '../../../../shared/models/user';
+import { UserRoleEnum } from '../../../../shared/models/user-role.enum';
 
 @Component({
   selector: 'app-restaurant-list',
@@ -22,6 +23,7 @@ import { User } from '../../../../shared/models/user';
 export class RestaurantListComponent implements OnInit {
 
   user?: User;
+  userRole = UserRoleEnum;
   locationId: number = 0;
   restaurants: any[] = [];
 
@@ -32,7 +34,7 @@ export class RestaurantListComponent implements OnInit {
     isPaginated: true,
     pageNumber: 1,
     pageSize: 10
-  }
+  };
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -60,13 +62,12 @@ export class RestaurantListComponent implements OnInit {
   }
 
   onRestaurant(): void {
-    this.restaurantService.getRestaurantsByLocation(this.locationId, this.request)
-      .subscribe({
-        next: (response) => {
-          this.restaurants = response.data;
-          this.totalPage = Math.ceil(response.total / this.request.pageSize);
-        }
-      });
+    this.restaurantService.getRestaurantsByLocation(this.locationId, this.request).subscribe({
+      next: (response) => {
+        this.restaurants = response.data;
+        this.totalPage = Math.ceil(response.total / this.request.pageSize);
+      }
+    });
   }
 
   onSearch(queryText: any): void {
@@ -96,12 +97,11 @@ export class RestaurantListComponent implements OnInit {
   }
 
   onDeleteRestaurant(id: any): void {
-    this.restaurantService.deleteRestaurant(id)
-      .subscribe({
-        next: (response) => {
-          this.onRestaurant();
-        }
-      })
+    this.restaurantService.deleteRestaurant(id).subscribe({
+      next: (response) => {
+        this.onRestaurant();
+      }
+    });
   }
 
   getPage(pageNumber: any): void {

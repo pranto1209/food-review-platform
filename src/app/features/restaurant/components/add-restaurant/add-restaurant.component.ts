@@ -33,11 +33,10 @@ export class AddRestaurantComponent implements OnInit {
   }
 
   onFormSubmit() {
-    this.restaurantService.addRestaurant(this.model)
-      .subscribe({
-        next: (response) => {
-          window.history.back();
-        }
-      });
+    this.restaurantService.addRestaurant(this.model).subscribe({
+      next: (response) => {
+        window.history.back();
+      }
+    });
   }
 }

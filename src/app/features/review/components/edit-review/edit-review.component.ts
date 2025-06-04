@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ReviewService } from '../../services/review.service';
-import { UpdateReviewRequest } from '../../models/update-review.request';
+import { EditReviewRequest } from '../../models/edit-review.request';
 
 @Component({
   selector: 'app-edit-review',
@@ -36,13 +36,13 @@ export class EditReviewComponent implements OnInit {
   }
 
   onFormSubmit(): void {
-    const model: UpdateReviewRequest = {
+    const model: EditReviewRequest = {
       id: this.reviewId,
       rating: this.userReview.rating,
       comment: this.userReview.comment ?? ''
     };
 
-    this.reviewService.updateReview(model).subscribe({
+    this.reviewService.editReview(model).subscribe({
       next: (response) => {
         window.history.back();
       }

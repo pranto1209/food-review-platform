@@ -1,4 +1,4 @@
-export interface UpdateLocationRequest {
+export interface EditLocationRequest {
   id: number;
   name: string;
   latitude?: number;

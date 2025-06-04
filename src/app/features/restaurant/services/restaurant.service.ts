@@ -29,8 +29,8 @@ export class RestaurantService {
     return this.http.post<any>(`${environment.apiBaseUrl}/Restaurant/add-restaurant`, model);
   }
 
-  updateRestaurant(model: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiBaseUrl}/Restaurant/update-restaurant`, model);
+  editRestaurant(model: any): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}/Restaurant/edit-restaurant`, model);
   }
 
   deleteRestaurant(id: any): Observable<any> {

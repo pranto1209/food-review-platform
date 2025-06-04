@@ -29,8 +29,8 @@ export class LocationService {
     return this.http.post<any>(`${environment.apiBaseUrl}/Location/add-location`, model);
   }
 
-  updateLocation(model: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiBaseUrl}/Location/update-location`, model);
+  editLocation(model: any): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}/Location/edit-location`, model);
   }
 
   deleteLocation(id: any): Observable<any> {

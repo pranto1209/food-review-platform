@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { RestaurantService } from '../../services/restaurant.service';
-import { UpdateRestaurantRequest } from '../../models/update-restaurant.request';
+import { EditRestaurantRequest } from '../../models/edit-restaurant.request';
 
 @Component({
   selector: 'app-edit-restaurant',
@@ -36,12 +36,12 @@ export class EditRestaurantComponent implements OnInit {
   }
 
   onFormSubmit(): void {
-    const model: UpdateRestaurantRequest = {
+    const model: EditRestaurantRequest = {
       id: this.restaurantId,
       name: this.restaurant.name
     };
 
-    this.restaurantService.updateRestaurant(model).subscribe({
+    this.restaurantService.editRestaurant(model).subscribe({
       next: (response) => {
         window.history.back();
       }

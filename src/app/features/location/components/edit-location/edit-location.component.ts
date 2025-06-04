@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { LocationService } from '../../services/location.service';
-import { UpdateLocationRequest } from '../../models/update-location.request';
+import { EditLocationRequest } from '../../models/edit-location.request';
 
 @Component({
   selector: 'app-edit-location',
@@ -36,14 +36,14 @@ export class EditLocationComponent implements OnInit {
   }
 
   onFormSubmit(): void {
-    const model: UpdateLocationRequest = {
+    const model: EditLocationRequest = {
       id: this.locationId,
       name: this.location.name,
       latitude: this.location.latitude,
       longitude: this.location.longitude
     };
 
-    this.locationService.updateLocation(model).subscribe({
+    this.locationService.editLocation(model).subscribe({
       next: (response) => {
         window.history.back();
       }

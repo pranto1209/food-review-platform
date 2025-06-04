@@ -53,8 +53,8 @@ export class ReviewService {
     return this.http.post<any>(`${environment.apiBaseUrl}/Review/add-review`, model);
   }
 
-  updateReview(model: any): Observable<any> {
-    return this.http.put<any>(`${environment.apiBaseUrl}/Review/update-review`, model);
+  editReview(model: any): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}/Review/edit-review`, model);
   }
 
   deleteReview(id: any): Observable<any> {
